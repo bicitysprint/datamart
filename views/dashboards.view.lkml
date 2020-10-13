@@ -648,8 +648,69 @@ view: dashboards {
     sql: ${TABLE}."WORKDAY" ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [departmentname]
+ dimension: customercharge {
+   type: number
+   sql: ${revenue}+${discount} ;;
+ }
+
+ dimension: driveragenttrunkcost {
+  type: number
+  sql: ${drivercost}+${agentcost}+${trunkcost} ;;
+ }
+
+dimension: margin {
+  type: number
+  sql: ${customercharge}-${driveragenttrunkcost} ;;
+}
+
+dimension: mamargin {
+  type: number
+  sql: ${totalrevenueadjusted}-${totalcostadjusted} ;;
+}
+
+################################################## MEASURES ##################################################
+
+  measure: revenueplusdiscount {
+    type: sum
+    sql: ${customercharge} ;;
+    label: "revenue plus discount"
   }
+
+  measure: datcost {
+    type: sum
+    sql: ${driveragenttrunkcost} ;;
+    label: "driver, agent, trunk cost (dat)"
+  }
+
+  measure: customermargin {
+    type: sum
+    sql: ${margin} ;;
+    label: "based off of customercharge and datcost"
+  }
+
+  measure: volume {
+    type: count_distinct
+    sql: ${jobno} ;;
+    label: "counting jobnos"
+  }
+
+  measure: managementaccountrevenue {
+    type: sum
+    sql: ${totalrevenueadjusted} ;;
+    label: "includes accruals"
+  }
+
+  measure: managementaccountscost {
+    type: sum
+    sql: ${totalcostadjusted} ;;
+    label: "includes accruals and non distributed cost"
+  }
+
+  measure: managementaccountsmargin {
+    type: sum
+    sql: ${mamargin} ;;
+    label: "this might be double counting trunk cost at month end, check later"
+
+  }
+
 }
