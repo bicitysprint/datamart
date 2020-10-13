@@ -136,7 +136,7 @@ view: dashboards {
   }
 
   dimension: bookingyear {
-    type: number
+    type: string
     sql: ${TABLE}."BOOKINGYEAR" ;;
   }
 
