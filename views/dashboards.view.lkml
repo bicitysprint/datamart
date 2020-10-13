@@ -673,7 +673,7 @@ dimension: mamargin {
   measure: revenueplusdiscount {
     type: sum
     sql: ${customercharge} ;;
-    value_format_name: gbp
+    value_format_name: gbp_0
     #gbp_0 to remove decimal
     description: "revenue plus discount"
   }
@@ -681,7 +681,7 @@ dimension: mamargin {
   measure: datcost {
     type: sum
     sql: ${driveragenttrunkcost} ;;
-    value_format_name: gbp
+    value_format_name: gbp_0
     #gbp_0 to remove decimal
     description: "driver, agent, trunk cost (dat)"
   }
@@ -689,7 +689,7 @@ dimension: mamargin {
   measure: customermargin {
     type: sum
     sql: ${margin} ;;
-    value_format_name: gbp
+    value_format_name: gbp_0
     #gbp_0 to remove decimal
     description: "based off of customercharge and datcost"
   }
@@ -703,7 +703,7 @@ dimension: mamargin {
   measure: managementaccountrevenue {
     type: sum
     sql: ${totalrevenueadjusted} ;;
-    value_format_name: gbp
+    value_format_name: gbp_0
     #gbp_0 to remove decimal
     description: "includes accruals"
   }
@@ -711,7 +711,7 @@ dimension: mamargin {
   measure: managementaccountscost {
     type: sum
     sql: ${totalcostadjusted} ;;
-    value_format_name: gbp
+    value_format_name: gbp_0
     #gbp_0 to remove decimal
     description: "includes accruals and non distributed cost"
   }
@@ -719,7 +719,7 @@ dimension: mamargin {
   measure: managementaccountsmargin {
     type: sum
     sql: ${mamargin} ;;
-    value_format_name: gbp
+    value_format_name: gbp_0
     #gbp_0 to remove decimal
     description: "this might be double counting trunk cost at month end, check later"
 
