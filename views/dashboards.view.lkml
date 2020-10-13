@@ -675,7 +675,7 @@ dimension: mamargin {
     sql: ${customercharge} ;;
     value_format_name: gbp
     #gbp_0 to remove decimal
-    label: "revenue plus discount"
+    description: "revenue plus discount"
   }
 
   measure: datcost {
@@ -683,7 +683,7 @@ dimension: mamargin {
     sql: ${driveragenttrunkcost} ;;
     value_format_name: gbp
     #gbp_0 to remove decimal
-    label: "driver, agent, trunk cost (dat)"
+    description: "driver, agent, trunk cost (dat)"
   }
 
   measure: customermargin {
@@ -691,13 +691,13 @@ dimension: mamargin {
     sql: ${margin} ;;
     value_format_name: gbp
     #gbp_0 to remove decimal
-    label: "based off of customercharge and datcost"
+    description: "based off of customercharge and datcost"
   }
 
   measure: volume {
     type: count_distinct
     sql: ${jobno} ;;
-    label: "counting jobnos"
+    description: "counting jobnos"
   }
 
   measure: managementaccountrevenue {
@@ -705,7 +705,7 @@ dimension: mamargin {
     sql: ${totalrevenueadjusted} ;;
     value_format_name: gbp
     #gbp_0 to remove decimal
-    label: "includes accruals"
+    description: "includes accruals"
   }
 
   measure: managementaccountscost {
@@ -713,7 +713,7 @@ dimension: mamargin {
     sql: ${totalcostadjusted} ;;
     value_format_name: gbp
     #gbp_0 to remove decimal
-    label: "includes accruals and non distributed cost"
+    description: "includes accruals and non distributed cost"
   }
 
   measure: managementaccountsmargin {
@@ -721,7 +721,7 @@ dimension: mamargin {
     sql: ${mamargin} ;;
     value_format_name: gbp
     #gbp_0 to remove decimal
-    label: "this might be double counting trunk cost at month end, check later"
+    description: "this might be double counting trunk cost at month end, check later"
 
   }
 
