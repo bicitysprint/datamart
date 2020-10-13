@@ -82,7 +82,7 @@ view: dashboards {
   }
 
   dimension: archive {
-    type: number
+    type: string
     sql: ${TABLE}."ARCHIVE" ;;
   }
 
