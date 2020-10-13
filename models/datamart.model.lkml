@@ -8,7 +8,10 @@ sql_trigger: SELECT count(jobno) FROM datmart.dashboards;;
   max_cache_age: "24 hour"
 }
 
-persist_with: datamart_default_datagroup
 
+explore: dashboards {
 
-explore: dashboards {}
+  label: "Job level reporting"
+  persist_with: datamart_default_datagroup
+  group_label: "DATAMART"
+}
