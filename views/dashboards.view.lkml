@@ -123,6 +123,7 @@ view: dashboards {
   dimension: bookingmonth {
     type: number
     sql: ${TABLE}."BOOKINGMONTH" ;;
+    drill_fields: [bookingweek]
   }
 
   dimension: bookingtype {
@@ -378,6 +379,7 @@ view: dashboards {
   dimension: jobregion {
     type: string
     sql: ${TABLE}."JOBREGION" ;;
+    drill_fields: [jobsc]
   }
 
   dimension: jobsc {
