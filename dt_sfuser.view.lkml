@@ -109,7 +109,7 @@ view: dt_sfuser {
     sql: ${TABLE}."MANAGER_NAME" ;;
     link: {
       label: "See Detail for {{value}}"
-      url: "/dashboards/649?Manager={{value}}&Name={{value}}"
+      url: "/dashboards/649?Manager={{value}}&Name={{value}}&Department={{ _filters['dt_sfuser.department']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
