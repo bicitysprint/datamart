@@ -239,6 +239,21 @@ view: trading {
     value_format_name: gbp
   }
 
+  dimension: up_arrow {
+    group_label: "Shapes"
+    type: string
+    sql: '▲' ;;
+    html: <font color = "green">{{ value }}</font> ;;
+  }
+
+  dimension: down_arrow {
+    group_label: "Shapes"
+    type: string
+    sql: '▼' ;;
+    html: <font color = "red">{{ value }}</font> ;;
+  }
+
+
 
   #############################   measures  ################################
 
