@@ -576,7 +576,7 @@ view: tradingjobs {
 
 set: explore_set {
     fields: [archive,jobno,booking_date,booking_month_num,booking_month_name,booking_week,booking_week_of_year,booking_year,
-    reportgroup,clientreportstatus,clientcode,clientname,consolcode,consolname,accountcode,accountmanager,opptype,forecast_key,
+    reportgroup,clientreportstatus,clientcode,clientname,consolcode,consolname,accountcode,accountname,accountmanager,opptype,forecast_key,
     fckey_name,servicecode,servicedescription,umbrellaservice,revenue,discount,revenue_actual,drivercost,agentcost,trunkcost,linehaulcost,ndjcost,cost_actual,
     profit_actual,margin_actual,sum_of_revenue,sum_of_discount,sum_of_revenue_actual,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,
     sum_of_ndjcost,sum_of_cost_actual,sum_of_profit_actual,sum_of_margin_actual,sum_of_jobcount]
