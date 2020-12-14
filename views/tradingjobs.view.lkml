@@ -56,6 +56,30 @@ view: tradingjobs {
     value_format_name: id
   }
 
+  dimension: archive_date {
+    group_label: "Archive Dates"
+    type: date
+    sql: '20'||left(ARCHIVE,2)||'-'||substring(ARCHIVE,3,2)||'-'||right(last_day(to_date('20'||left(ARCHIVE,2)||'-'||substring(ARCHIVE,3,2)||'-'||'01')),2) ;;
+  }
+
+  dimension: archive_name_of_month {
+    group_label: "Archive Dates"
+    type: date_month_name
+    sql: TO_DATE('20'||left(ARCHIVE,2)||'-'||substring(ARCHIVE,3,2)||'-'||right(last_day(to_date('20'||left(ARCHIVE,2)||'-'||substring(ARCHIVE,3,2)||'-'||'01')),2)) ;;
+  }
+
+  dimension: archive_month_number {
+    group_label: "Archive Dates"
+    type: date_month_num
+    sql: TO_DATE('20'||left(ARCHIVE,2)||'-'||substring(ARCHIVE,3,2)||'-'||right(last_day(to_date('20'||left(ARCHIVE,2)||'-'||substring(ARCHIVE,3,2)||'-'||'01')),2)) ;;
+  }
+
+  dimension: archive_year {
+    group_label: "Archive Dates"
+    type: date_year
+    sql: TO_DATE('20'||left(ARCHIVE,2)||'-'||substring(ARCHIVE,3,2)||'-'||right(last_day(to_date('20'||left(ARCHIVE,2)||'-'||substring(ARCHIVE,3,2)||'-'||'01')),2)) ;;
+  }
+
   dimension: archive_job {
     hidden: yes
     type: string
@@ -580,7 +604,7 @@ view: tradingjobs {
  ###########################   drill sets   #############################
 
 set: explore_set {
-    fields: [archive,jobno,booking_date,booking_month_num,booking_month_name,booking_week,booking_week_of_year,booking_year,
+    fields: [archive,archive_date,archive_month_number,archive_name_of_month,archive_year,jobno,booking_date,booking_month_num,booking_month_name,booking_week,booking_week_of_year,booking_year,
     reportgroup,clientreportstatus,clientcode,clientname,consolcode,consolname,accountcode,accountname,accountmanager,opptype,forecast_key,
     fckey_name,servicecode,servicedescription,umbrellaservice,revenue,discount,revenue_actual,drivercost,agentcost,trunkcost,linehaulcost,ndjcost,cost_actual,
     profit_actual,margin_actual,sum_of_revenue,sum_of_discount,sum_of_revenue_actual,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,
