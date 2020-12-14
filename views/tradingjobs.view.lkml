@@ -275,6 +275,7 @@ view: tradingjobs {
   dimension: jobno {
     type: number
     sql: ${TABLE}."JOBNO" ;;
+    value_format_name: id
   }
 
   dimension: linehaulcost {
