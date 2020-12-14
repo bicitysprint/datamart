@@ -57,6 +57,7 @@ view: tradingjobs {
   }
 
   dimension: archive_job {
+    hidden: yes
     type: string
     primary_key: yes
     sql: ${TABLE}."ARCHIVE" || '-' || ${TABLE}."JOBNO" ;;
@@ -78,6 +79,7 @@ view: tradingjobs {
     convert_tz: no
     datatype: date
     sql: ${TABLE}."BOOKING_DATE" ;;
+    drill_fields: [booking_date]
   }
 
   dimension: client_classification {
@@ -400,6 +402,7 @@ view: tradingjobs {
   dimension: servicegroupcode {
     type: string
     sql: ${TABLE}."SERVICEGROUPCODE" ;;
+    drill_fields: [jobno]
   }
 
   dimension: subsector {
@@ -465,6 +468,7 @@ view: tradingjobs {
   dimension: umbrellaservice {
     type: string
     sql: ${TABLE}."UMBRELLASERVICE" ;;
+    drill_fields: [servicedescription,jobno]
   }
 
   dimension: week_number {
@@ -496,7 +500,7 @@ view: tradingjobs {
     type: sum
     sql: ${revenue_actual} ;;
     value_format_name: gbp
-    drill_fields: []
+    drill_fields: [revenue_details*]
   }
 
 
@@ -505,7 +509,7 @@ view: tradingjobs {
     type: sum
     sql: ${drivercost} ;;
     value_format_name: gbp
-    drill_fields: []
+    drill_fields: [cost_details*]
   }
 
   measure: sum_of_agentcost {
@@ -513,7 +517,7 @@ view: tradingjobs {
     type: sum
     sql: ${agentcost} ;;
     value_format_name: gbp
-    drill_fields: []
+    drill_fields: [cost_details*]
   }
 
   measure: sum_of_trunkcost {
@@ -521,7 +525,7 @@ view: tradingjobs {
     type: sum
     sql: ${trunkcost} ;;
     value_format_name: gbp
-    drill_fields: []
+    drill_fields: [cost_details*]
   }
 
   measure: sum_of_linehaulcost {
@@ -529,7 +533,7 @@ view: tradingjobs {
     type: sum
     sql: ${linehaulcost} ;;
     value_format_name: gbp
-    drill_fields: []
+    drill_fields: [cost_details*]
   }
 
   measure: sum_of_ndjcost {
@@ -537,7 +541,7 @@ view: tradingjobs {
     type: sum
     sql: ${ndjcost} ;;
     value_format_name: gbp
-    drill_fields: []
+    drill_fields: [cost_details*]
   }
 
   measure: sum_of_cost_actual {
@@ -545,7 +549,7 @@ view: tradingjobs {
     type: sum
     sql: ${cost_actual} ;;
     value_format_name: gbp
-    drill_fields: []
+    drill_fields: [cost_details*]
   }
 
   measure: sum_of_profit_actual {
@@ -553,23 +557,23 @@ view: tradingjobs {
     type: sum
     sql: ${profit_actual} ;;
     value_format_name: gbp
-    drill_fields: []
+    drill_fields: [margin_details*]
   }
 
   measure: sum_of_margin_actual {
     group_label: "Profit & Margin"
     type: number
     sql: case when sum(${revenue_actual}) = 0 then 0 else
-         sum(${profit_actual}) / sum(${revenue_actual}   ;;
+         sum(${profit_actual}) / sum(${revenue_actual}) end  ;;
     value_format_name: percent_2
-    drill_fields: []
+    drill_fields: [margin_details*]
   }
 
   measure: sum_of_jobcount {
     type: sum
     sql: ${jobcount}   ;;
     value_format_name: decimal_0
-    drill_fields: []
+    drill_fields: [revenue_details*]
   }
 
 
@@ -582,6 +586,18 @@ set: explore_set {
     profit_actual,margin_actual,sum_of_revenue,sum_of_discount,sum_of_revenue_actual,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,
     sum_of_ndjcost,sum_of_cost_actual,sum_of_profit_actual,sum_of_margin_actual,sum_of_jobcount]
 }
+
+set: revenue_details {
+     fields: [clientcode,clientname,booking_month_name,sum_of_revenue_actual]
+}
+
+  set: cost_details {
+    fields: [clientcode,clientname,booking_month_name,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,sum_of_ndjcost]
+  }
+
+  set: margin_details {
+    fields: [clientcode,clientname,booking_month_name,sum_of_revenue,sum_of_discount,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,sum_of_ndjcost,sum_of_profit_actual,sum_of_margin_actual]
+  }
 
 
 }
