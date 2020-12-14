@@ -10,6 +10,11 @@ datagroup: trading_default_datagroup {
   max_cache_age: "24 hour"
 }
 
+datagroup: tradingjobs_default_datagroup {
+  sql_trigger: SELECT count(jobno) FROM datmart.tradingjobs ;;
+  max_cache_age: "24 hour"
+}
+
 
 explore: trading {
 
@@ -33,5 +38,15 @@ explore: trading {
     relationship: many_to_one
     fields: [dt_sfuser.detail*]
   }
+
+}
+
+explore: tradingjobs {
+
+  label: "Trading Jobs"
+  persist_with: tradingjobs_default_datagroup
+  group_label: "DATAMART"
+  hidden: no
+  fields: [tradingjobs.explore_set*]
 
 }
