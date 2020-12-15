@@ -15,6 +15,11 @@ datagroup: tradingjobs_default_datagroup {
   max_cache_age: "24 hour"
 }
 
+datagroup: tradingsuite_default_datagroup {
+  sql_trigger: SELECT count(jobno) FROM datamart.vwtradingsuite ;;
+  max_cache_age: "24 hour"
+}
+
 
 explore: trading {
 
@@ -48,5 +53,19 @@ explore: tradingjobs {
   group_label: "DATAMART"
   hidden: no
   fields: [tradingjobs.explore_set*]
+
+}
+
+explore: vwtradingsuite {
+
+  label: "Trading Weekly"
+  persist_with: tradingsuite_default_datagroup
+  group_label: "DATAMART"
+  hidden: no
+  access_filter: {
+    field: vwtradingsuite.user_name
+    user_attribute: account_owner_filter
+  }
+  #fields: [tradingjobs.explore_set*]
 
 }
