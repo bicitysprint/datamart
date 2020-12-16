@@ -1,5 +1,5 @@
-view: vwtradingsuite {
-  sql_table_name: "DATAMART"."VWTRADINGSUITE"
+view: vwtradingsuite_monthly {
+  sql_table_name: "DATAMART"."VWTRADINGSUITE_MONTHLY"
     ;;
 
   dimension: accountcode {
@@ -7,11 +7,11 @@ view: vwtradingsuite {
     sql: ${TABLE}."ACCOUNTCODE" ;;
   }
 
-  dimension: accountcode_wc {
+  dimension: accountcode_month {
     primary_key: yes
     hidden: yes
     type: string
-    sql: ${TABLE}."ACCOUNTCODE" || ${TABLE}."WC" ;;
+    sql: ${TABLE}."ACCOUNTCODE" || '-'|| ${TABLE}."WCMONTHDATE" ;;
   }
 
   dimension: accountmanager {
@@ -20,7 +20,6 @@ view: vwtradingsuite {
   }
 
   dimension: accountmanagerid {
-    hidden: yes
     type: string
     sql: ${TABLE}."ACCOUNTMANAGERID" ;;
   }
@@ -71,18 +70,12 @@ view: vwtradingsuite {
     hidden: yes
     type: string
     sql: ${TABLE}."DIVISION" ;;
-    drill_fields: [sfdivision,managername,accountmanager]
   }
 
   dimension: fckey {
     hidden: yes
     type: string
     sql: ${TABLE}."FCKEY" ;;
-  }
-
-  dimension: iscurrentmonth {
-    type: number
-    sql: ${TABLE}."ISCURRENTMONTH" ;;
   }
 
   dimension: jobcount {
@@ -100,7 +93,6 @@ view: vwtradingsuite {
   dimension: opptype {
     type: string
     sql: ${TABLE}."OPPTYPE" ;;
-
   }
 
   dimension: profit {
@@ -109,24 +101,24 @@ view: vwtradingsuite {
     value_format_name: gbp
   }
 
+  dimension: profitforecast {
+    type: number
+    sql: ${TABLE}."PROFITFORECAST" ;;
+    value_format_name: gbp
+  }
+
   dimension: margin {
     type: number
-    sql: case when ${revenue} = 0 then 0 else
-         ${profit} / ${revenue} end ;;
+    sql:  case when ${revenue} = 0 then 0 else
+          ${profit} / ${revenue} end  ;;
     value_format_name: percent_2
   }
 
   dimension: margin_forecast {
     type: number
-    sql: case when ${revenueforecast} = 0 then 0 else
-      ${profitforecast} / ${revenueforecast} end ;;
+    sql:  case when ${revenueforecast} = 0 then 0 else
+      ${profitforecast} / ${revenueforecast} end  ;;
     value_format_name: percent_2
-  }
-
-  dimension: profitforecast {
-    type: number
-    sql: ${TABLE}."PROFITFORECAST" ;;
-    value_format_name: gbp
   }
 
   dimension: reportgroup {
@@ -136,7 +128,6 @@ view: vwtradingsuite {
   }
 
   dimension: reportgroup1 {
-    hidden: yes
     type: string
     sql: ${TABLE}."REPORTGROUP1" ;;
     drill_fields: [clientcode,clientname,consolcardconsolname,consolcode,accountcode,accountname,accountmanager]
@@ -185,84 +176,112 @@ view: vwtradingsuite {
     sql: ${TABLE}."USER_NAME" ;;
   }
 
-  dimension_group: wc {
-    group_label: "Week Commencing"
+  dimension: wcmonth {
+    hidden: yes
+    type: number
+    sql: ${TABLE}."WCMONTH" ;;
+  }
+
+  dimension_group: wcmonthdate {
+    group_label: "Booking Month"
+    label: "Booking"
     type: time
     timeframes: [
-      raw,
-      date,
-      week,
-      week_of_year,
+      # raw,
+      # date,
+      # week,
       month,
       month_num,
       month_name,
       quarter,
+      quarter_of_year,
       year
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}."WC" ;;
+    sql: ${TABLE}."WCMONTHDATE" ;;
   }
 
-  #########################    measures  ###########################
+  dimension: wcyear {
+    hidden: yes
+    type: number
+    sql: ${TABLE}."WCYEAR" ;;
+  }
+
+  ###########################      measures     ###########################
 
   measure: sum_of_revenue {
     type: sum
     sql: ${revenue} ;;
     value_format_name: gbp
-    drill_fields: [revenue_detail*]
+    drill_fields: []
+  }
 
+  measure: sum_of_revenue_ty {
+    hidden: yes
+    type: sum
+    sql: case when ${wcmonthdate_year} = (select (max(${wcmonthdate_year})) from ${TABLE} ) then ${revenue} end ;;
+    value_format_name: gbp
+    drill_fields: []
+  }
+
+  measure: sum_of_revenue_py {
+    hidden: yes
+    type: sum
+    sql: case when ${wcmonthdate_year} = (select (max(${wcmonthdate_year})-1) from ${TABLE} ) then ${revenue} end ;;
+    value_format_name: gbp
+    drill_fields: []
   }
 
   measure: sum_of_revenue_forecast {
     type: sum
     sql: ${revenueforecast} ;;
     value_format_name: gbp
-    drill_fields: [revenue_detail*]
-
+    drill_fields: []
   }
 
   measure: sum_of_profit {
     type: sum
     sql: ${profit} ;;
     value_format_name: gbp
-    drill_fields: [profit_detail*]
-
+    drill_fields: []
   }
 
   measure: sum_of_profit_forecast {
     type: sum
-    sql: ${profitforecast} ;;
+    sql: ${profitforecast};;
     value_format_name: gbp
-    drill_fields: [profit_detail*]
-
+    drill_fields: []
   }
 
   measure: sum_of_margin {
     type: number
-    sql: case when sum(${revenue}) 0 then 0 else
-         sum(${profit}) / sum(${revenue}) end    ;;
+    sql:case when sum(${revenue}) = 0 then 0 else
+        sum(${profit}) / sum(${revenue}) end  ;;
     value_format_name: percent_2
+    drill_fields: []
   }
 
+  measure: sum_of_margin_forecast {
+    type: number
+    sql:case when sum(${revenueforecast}) = 0 then 0 else
+      sum(${profitforecast} / sum(${revenueforecast}) end  ;;
+    value_format_name: percent_2
+    drill_fields: []
+  }
 
-########################      drill sets      ##########################
-set: revenue_detail {
-  fields: [clientcode,clientname,wc_week,wc_week_of_year,sum_of_revenue,sum_of_revenue_forecast
+  ######################    drill sets   #######################
 
-  ]
-}
+  set: revenue_detail {
+    fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_revenue,sum_of_revenue_forecast]
+  }
 
   set: profit_detail {
-    fields: [clientcode,clientname,wc_week,wc_week_of_year,sum_of_profit,sum_of_profit_forecast
-
-    ]
+    fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_profit,sum_of_profit_forecast]
   }
 
   set: margin_detail {
-    fields: [clientcode,clientname,wc_week,wc_week_of_year,sum_of_revenue,sum_of_profit,sum_of_margin
-
-    ]
+    fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_revenue,sum_of_profit,sum_of_margin]
   }
 
 }
