@@ -722,7 +722,7 @@ view: tradingjobs {
 
 set: explore_set {
 
-    fields: [archive,archive_date,archive_month_number,archive_name_of_month,archive_year,jobno,booking_date,booking_month_num,booking_month_name,booking_week,booking_week_of_year,booking_year,
+    fields: [archive,archive_date,archive_month_number,archive_name_of_month,archive_year,jobno,booking_date,booking_month,booking_month_num,booking_month_name,booking_week,booking_week_of_year,booking_year,
     reportgroup,clientreportstatus,currentclientcode,currentclientname,currentconsolcode,currentconsolname,accountcode,accountname,currentaccountmanager,opptype,forecast_key,
     fckey_name,servicecode,servicedescription,umbrellaservice,revenue,discount,revenue_actual,drivercost,agentcost,trunkcost,linehaulcost,ndjcost,cost_actual,
     profit_actual,margin_actual,

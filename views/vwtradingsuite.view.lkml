@@ -5,6 +5,11 @@ view: vwtradingsuite {
   dimension: accountcode {
     type: string
     sql: ${TABLE}."ACCOUNTCODE" ;;
+    link: {
+      label: "See Detail for {{value}}"
+      url: "/dashboards/656?Account%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
   }
 
   dimension: accountcode_wc {
@@ -29,18 +34,33 @@ view: vwtradingsuite {
   dimension: accountname {
     type: string
     sql: ${TABLE}."ACCOUNTNAME" ;;
+    link: {
+      label: "See Detail for {{value}}"
+      url: "/dashboards/656?Account%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
   }
 
   dimension: clientcode {
     type: string
     sql: ${TABLE}."CLIENTCODE" ;;
     drill_fields: [consolcardconsolname,consolcode,accountcode,accountname,accountmanager]
+    link: {
+      label: "See Detail for {{value}}"
+      url: "/dashboards/656?Client%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
   }
 
   dimension: clientname {
     type: string
     sql: ${TABLE}."CLIENTNAME" ;;
     drill_fields: [consolcardconsolname,consolcode,accountcode,accountname,accountmanager]
+    link: {
+      label: "See Detail for {{value}}"
+      url: "/dashboards/656?Account%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
   }
 
   dimension: clientreportstatus {
@@ -54,12 +74,22 @@ view: vwtradingsuite {
     type: string
     sql: ${TABLE}."CONSOLCARDCONSOLNAME" ;;
     drill_fields: [accountcode,accountname,accountmanager]
+    link: {
+      label: "See Detail for {{value}}"
+      url: "/dashboards/656?Consol%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
   }
 
   dimension: consolcode {
     type: string
     sql: ${TABLE}."CONSOLCODE" ;;
     drill_fields: [accountcode,accountname,accountmanager]
+    link: {
+      label: "See Detail for {{value}}"
+      url: "/dashboards/656?Consol%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
   }
 
   dimension: department {

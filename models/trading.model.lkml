@@ -101,5 +101,4 @@ explore: vwtradingsuite_monthly {
   # }
 
   #fields: [tradingjobs.explore_set*]
-
 }
