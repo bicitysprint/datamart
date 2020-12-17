@@ -88,6 +88,14 @@ explore: vwtradingsuite_monthly {
     field: vwtradingsuite_monthly.user_name
     user_attribute: account_owner_filter
   }
+
+  # join: tradingjobs {
+  #   type: left_outer
+  #   sql_on: ${vwtradingsuite_monthly.accountcode} = ${tradingjobs.accountcode} and
+  #           ${vwtradingsuite_monthly.wcmonthdate_month} = ${tradingjobs.booking_month}    ;;
+  #   relationship: one_to_many
+  # }
+
   #fields: [tradingjobs.explore_set*]
 
 }

@@ -17,6 +17,11 @@ view: vwtradingsuite_monthly {
   dimension: accountmanager {
     type: string
     sql: ${TABLE}."ACCOUNTMANAGER" ;;
+    link: {
+      label: "See Detail for {{value}}"
+      url: "/dashboards/663?Name={{value}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
   }
 
   dimension: accountmanagerid {
@@ -33,12 +38,22 @@ view: vwtradingsuite_monthly {
     type: string
     sql: ${TABLE}."CLIENTCODE" ;;
     drill_fields: [consolcardconsolname,consolcode,accountcode,accountname,accountmanager]
+    link: {
+      label: "See Detail for {{value}}"
+      url: "/dashboards/656?Client%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite_monthly.accountmanager']}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
   }
 
   dimension: clientname {
     type: string
     sql: ${TABLE}."CLIENTNAME" ;;
     drill_fields: [consolcardconsolname,consolcode,accountcode,accountname,accountmanager]
+    link: {
+      label: "See Detail for {{value}}"
+      url: "/dashboards/656?Client%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite_monthly.accountmanager']}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
   }
 
   dimension: clientreportstatus {
@@ -64,6 +79,11 @@ view: vwtradingsuite_monthly {
     type: string
     sql: ${TABLE}."DEPARTMENT" ;;
     drill_fields: [sfdivision,managername,accountmanager]
+    link: {
+      label: "See Detail for {{value}}"
+      url: "/dashboards/661?Department={{value}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
   }
 
   dimension: division {
@@ -88,6 +108,11 @@ view: vwtradingsuite_monthly {
     type: string
     sql: ${TABLE}."MANAGERNAME" ;;
     drill_fields: [accountmanager,clientcode,clientname,consolcardconsolname,consolcode,accountcode,accountname]
+    link: {
+      label: "See Detail for {{value}}"
+      url: "/dashboards/662?Name={{value}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
   }
 
   dimension: opptype {
@@ -214,7 +239,7 @@ view: vwtradingsuite_monthly {
     type: sum
     sql: ${revenue} ;;
     value_format_name: gbp
-    drill_fields: []
+    drill_fields: [revenue_detail*]
   }
 
   measure: sum_of_revenue_ty {
@@ -222,7 +247,7 @@ view: vwtradingsuite_monthly {
     type: sum
     sql: case when ${wcmonthdate_year} = (select (max(${wcmonthdate_year})) from ${TABLE} ) then ${revenue} end ;;
     value_format_name: gbp
-    drill_fields: []
+    drill_fields: [revenue_detail*]
   }
 
   measure: sum_of_revenue_py {
@@ -230,28 +255,28 @@ view: vwtradingsuite_monthly {
     type: sum
     sql: case when ${wcmonthdate_year} = (select (max(${wcmonthdate_year})-1) from ${TABLE} ) then ${revenue} end ;;
     value_format_name: gbp
-    drill_fields: []
+    drill_fields: [revenue_detail*]
   }
 
   measure: sum_of_revenue_forecast {
     type: sum
     sql: ${revenueforecast} ;;
     value_format_name: gbp
-    drill_fields: []
+    drill_fields: [revenue_detail*]
   }
 
   measure: sum_of_profit {
     type: sum
     sql: ${profit} ;;
     value_format_name: gbp
-    drill_fields: []
+    drill_fields: [profit_detail*]
   }
 
   measure: sum_of_profit_forecast {
     type: sum
     sql: ${profitforecast};;
     value_format_name: gbp
-    drill_fields: []
+    drill_fields: [profit_detail*]
   }
 
   measure: sum_of_margin {
@@ -259,7 +284,7 @@ view: vwtradingsuite_monthly {
     sql:case when sum(${revenue}) = 0 then 0 else
         sum(${profit}) / sum(${revenue}) end  ;;
     value_format_name: percent_2
-    drill_fields: []
+    drill_fields: [margin_detail*]
   }
 
   measure: sum_of_margin_forecast {
@@ -267,7 +292,7 @@ view: vwtradingsuite_monthly {
     sql:case when sum(${revenueforecast}) = 0 then 0 else
       sum(${profitforecast} / sum(${revenueforecast}) end  ;;
     value_format_name: percent_2
-    drill_fields: []
+    drill_fields: [margin_detail*]
   }
 
   ######################    drill sets   #######################
