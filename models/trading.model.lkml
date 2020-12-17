@@ -59,6 +59,10 @@ explore: tradingjobs {
   group_label: "DATAMART"
   hidden: no
   fields: [tradingjobs.explore_set*]
+  access_filter: {
+    field: tradingjobs.user_name
+    user_attribute: account_owner_filter
+  }
 
 }
 

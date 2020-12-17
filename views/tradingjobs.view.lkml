@@ -9,8 +9,16 @@ view: tradingjobs {
   }
 
   dimension: accountmanager {
+    label: "Historical Accountmanager"
     type: string
     sql: ${TABLE}."ACCOUNTMANAGER" ;;
+  }
+
+  dimension: currentaccountmanager {
+    label: "Accountmanager"
+    type: string
+    sql: ${TABLE}."CURRENTACCOUNTMANAGER" ;;
+    drill_fields: [currentclientcode,currentclientname,currentconsolcode,currentconsolname,accountcode,accountname]
   }
 
   dimension: accountname {
@@ -103,30 +111,47 @@ view: tradingjobs {
     convert_tz: no
     datatype: date
     sql: ${TABLE}."BOOKING_DATE" ;;
-    drill_fields: [booking_date]
+    drill_fields: [booking_date,jobno]
   }
 
   dimension: client_classification {
     type: string
     sql: ${TABLE}."CLIENT_CLASSIFICATION" ;;
+    drill_fields: [currentclientcode,currentclientname]
   }
 
   dimension: clientcode {
+    label: "Historical Clientcode"
     type: string
     sql: ${TABLE}."CLIENTCODE" ;;
     drill_fields: [consolcode,consolname,accountcode,accountname]
   }
 
+  dimension: currentclientcode {
+    label: "Clientcode"
+    type: string
+    sql: ${TABLE}."CURRENTCLIENTCODE" ;;
+    drill_fields: [currentaccountmanager,currentconsolcode,currentconsolname,accountcode,accountname]
+  }
+
   dimension: clientname {
+    label: "Historical Clientname"
     type: string
     sql: ${TABLE}."CLIENTNAME" ;;
     drill_fields: [consolcode,consolname,accountcode,accountname]
   }
 
+  dimension: currentclientname {
+    label: "Clientname"
+    type: string
+    sql: ${TABLE}."CURENTCLIENTNAME" ;;
+    drill_fields: [currentaccountmanager,currentconsolcode,currentconsolname,accountcode,accountname]
+  }
+
   dimension: clientreportstatus {
     type: string
     sql: ${TABLE}."CLIENTREPORTSTATUS" ;;
-    drill_fields: [clientcode,clientname,consolcode,consolname,accountcode,accountname]
+    drill_fields: [currentclientcode,currentclientname]
   }
 
   dimension_group: commencingweekdate {
@@ -148,15 +173,31 @@ view: tradingjobs {
   }
 
   dimension: consolcode {
+    label: "Historical Consolcode"
     type: string
     sql: ${TABLE}."CONSOLCODE" ;;
     drill_fields: [accountcode,accountname]
   }
 
+  dimension: currentconsolcode {
+    label: "Consolcode"
+    type: string
+    sql: ${TABLE}."CURRENTCONSOLCODE" ;;
+    drill_fields: [currentaccountmanager,accountcode,accountname]
+  }
+
   dimension: consolname {
+    label: "Historical Consolname"
     type: string
     sql: ${TABLE}."CONSOLNAME" ;;
     drill_fields: [accountcode,accountname]
+  }
+
+  dimension: currentconsolname {
+    label: "Consolname"
+    type: string
+    sql: ${TABLE}."CURRENTCONSOLNAME" ;;
+    drill_fields: [currentaccountmanager,accountcode,accountname]
   }
 
   dimension: costadjustment {
@@ -281,6 +322,7 @@ view: tradingjobs {
   dimension: industry {
     type: string
     sql: ${TABLE}."INDUSTRY" ;;
+    drill_fields: [currentclientcode,currentclientname]
   }
 
   dimension: itemcount {
@@ -343,7 +385,7 @@ view: tradingjobs {
   dimension: reportgroup {
     type: string
     sql: ${TABLE}."REPORTGROUP" ;;
-    drill_fields: [clientcode,clientname,consolcode,consolname,accountcode,accountname]
+    drill_fields: [clientcode,clientname]
   }
 
   dimension: revenue {
@@ -375,7 +417,7 @@ view: tradingjobs {
   dimension: sector {
     type: string
     sql: ${TABLE}."SECTOR" ;;
-    drill_fields: [clientcode,clientname,consolcode,consolname,accountcode,accountname]
+    drill_fields: [clientcode,clientname]
   }
 
   dimension: servicecentre_clean {
@@ -416,11 +458,13 @@ view: tradingjobs {
   dimension: servicecode {
     type: string
     sql: ${TABLE}."SERVICECODE" ;;
+    drill_fields: [jobno]
   }
 
   dimension: servicedescription {
     type: string
     sql: ${TABLE}."SERVICEDESCRIPTION" ;;
+    drill_fields: [jobno]
   }
 
   dimension: servicegroupcode {
@@ -498,8 +542,81 @@ view: tradingjobs {
   dimension: week_number {
     type: number
     sql: ${TABLE}."WEEK_NUMBER" ;;
+    drill_fields: [booking_date]
   }
 
+  dimension: title {
+    type: string
+    sql: ${TABLE}."TITLE" ;;
+    drill_fields: [currentaccountmanager]
+  }
+
+  dimension: department {
+    type: string
+    sql: ${TABLE}."DEPARTMENT" ;;
+    drill_fields: [sfdivision]
+  }
+
+  dimension: sfdivision {
+    label: "Division"
+    type: string
+    sql: ${TABLE}."SFDIVISION" ;;
+    drill_fields: [managername,currentaccountmanager]
+  }
+
+  dimension: user_name {
+    label: "Username"
+    type: string
+    sql: ${TABLE}."USER_NAME" ;;
+  }
+
+  dimension: managername {
+    type: string
+    sql: ${TABLE}."MANAGERNAME" ;;
+    drill_fields: [currentaccountmanager]
+  }
+
+  dimension: frompostcode {
+    type: string
+    sql: ${TABLE}."FROMPOSTCODE" ;;
+  }
+
+  dimension: topostcode {
+    type: string
+    sql: ${TABLE}."TOPOSTCODE" ;;
+  }
+
+  dimension: fromlatitude {
+    type: string
+    sql: ${TABLE}."FROMLATITUDE" ;;
+  }
+
+  dimension: fromlongitude {
+    type: string
+    sql: ${TABLE}."FROMLONGITUDE" ;;
+  }
+
+  dimension: tolatitude {
+    type: string
+    sql: ${TABLE}."TOLATITUDE" ;;
+  }
+
+  dimension: tolongitude {
+    type: string
+    sql: ${TABLE}."TOLONGITUDE" ;;
+  }
+
+  dimension: fromLonglat {
+    type: location
+    sql_latitude:${TABLE}."FROMLATITUDE" ;;
+    sql_longitude:${TABLE}."FROMLONGITUDE"  ;;
+  }
+
+  dimension: toLonglat {
+    type: location
+    sql_latitude:${TABLE}."TOLATITUDE" ;;
+    sql_longitude:${TABLE}."TOLONGITUDE"  ;;
+  }
 
   ###########################   measures   #############################
 
@@ -604,23 +721,26 @@ view: tradingjobs {
  ###########################   drill sets   #############################
 
 set: explore_set {
+
     fields: [archive,archive_date,archive_month_number,archive_name_of_month,archive_year,jobno,booking_date,booking_month_num,booking_month_name,booking_week,booking_week_of_year,booking_year,
-    reportgroup,clientreportstatus,clientcode,clientname,consolcode,consolname,accountcode,accountname,accountmanager,opptype,forecast_key,
+    reportgroup,clientreportstatus,currentclientcode,currentclientname,currentconsolcode,currentconsolname,accountcode,accountname,currentaccountmanager,opptype,forecast_key,
     fckey_name,servicecode,servicedescription,umbrellaservice,revenue,discount,revenue_actual,drivercost,agentcost,trunkcost,linehaulcost,ndjcost,cost_actual,
-    profit_actual,margin_actual,sum_of_revenue,sum_of_discount,sum_of_revenue_actual,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,
+    profit_actual,margin_actual,
+    title,department,sfdivision,user_name,managername,frompostcode,topostcode,fromlatitude,fromlongitude,tolatitude,tolongitude,fromLonglat,toLonglat,
+    sum_of_revenue,sum_of_discount,sum_of_revenue_actual,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,
     sum_of_ndjcost,sum_of_cost_actual,sum_of_profit_actual,sum_of_margin_actual,sum_of_jobcount]
 }
 
 set: revenue_details {
-     fields: [clientcode,clientname,booking_month_name,sum_of_revenue_actual]
+     fields: [currentclientcode,currentclientname,booking_month_name,sum_of_revenue_actual]
 }
 
   set: cost_details {
-    fields: [clientcode,clientname,booking_month_name,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,sum_of_ndjcost]
+    fields: [currentclientcode,currentclientname,booking_month_name,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,sum_of_ndjcost]
   }
 
   set: margin_details {
-    fields: [clientcode,clientname,booking_month_name,sum_of_revenue,sum_of_discount,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,sum_of_ndjcost,sum_of_profit_actual,sum_of_margin_actual]
+    fields: [currentclientcode,currentclientname,booking_month_name,sum_of_revenue,sum_of_discount,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,sum_of_ndjcost,sum_of_profit_actual,sum_of_margin_actual]
   }
 
 

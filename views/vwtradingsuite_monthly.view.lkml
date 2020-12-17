@@ -59,7 +59,7 @@ view: vwtradingsuite_monthly {
   dimension: clientreportstatus {
     type: string
     sql: ${TABLE}."CLIENTREPORTSTATUS" ;;
-    drill_fields: [clientcode,clientname,consolcardconsolname,consolcode,accountcode,accountname,accountmanager]
+    drill_fields: [clientcode,clientname]
   }
 
   dimension: consolcardconsolname {
@@ -107,7 +107,7 @@ view: vwtradingsuite_monthly {
   dimension: managername {
     type: string
     sql: ${TABLE}."MANAGERNAME" ;;
-    drill_fields: [accountmanager,clientcode,clientname,consolcardconsolname,consolcode,accountcode,accountname]
+    drill_fields: [accountmanager]
     link: {
       label: "See Detail for {{value}}"
       url: "/dashboards/662?Name={{value}}"
@@ -149,13 +149,14 @@ view: vwtradingsuite_monthly {
   dimension: reportgroup {
     type: string
     sql: ${TABLE}."REPORTGROUP" ;;
-    drill_fields: [clientcode,clientname,consolcardconsolname,consolcode,accountcode,accountname,accountmanager]
+    drill_fields: [clientcode,clientname]
   }
 
   dimension: reportgroup1 {
+    hidden: yes
     type: string
     sql: ${TABLE}."REPORTGROUP1" ;;
-    drill_fields: [clientcode,clientname,consolcardconsolname,consolcode,accountcode,accountname,accountmanager]
+    drill_fields: [clientcode,clientname]
   }
 
   dimension: revenue {
@@ -173,13 +174,13 @@ view: vwtradingsuite_monthly {
   dimension: sector1 {
     type: string
     sql: ${TABLE}."SECTOR1" ;;
-    drill_fields: [clientcode,clientname,consolcardconsolname,consolcode,accountcode,accountname,accountmanager]
+    drill_fields: [clientcode,clientname]
   }
 
   dimension: sector2 {
     type: string
     sql: ${TABLE}."SECTOR2" ;;
-    drill_fields: [clientcode,clientname,consolcardconsolname,consolcode,accountcode,accountname,accountmanager]
+    drill_fields: [clientcode,clientname]
   }
 
   dimension: sfdivision {
