@@ -8,7 +8,7 @@ view: vwtradingsuite_monthly {
     link: {
       label: "See Job Detail for {{value}}"
       url: "/dashboards/656?Account%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite_monthly.accountmanager']}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-             &Week="
+             &Week=&Client%20Report%20Status={{ _filters['vwtradingsuite_monthly.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
@@ -24,8 +24,9 @@ view: vwtradingsuite_monthly {
     type: string
     sql: ${TABLE}."ACCOUNTMANAGER" ;;
     link: {
-      label: "See Detail for {{value}}"
-      url: "/dashboards/663?Name={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}} "
+      label: "See Client Detail for {{value}}"
+      url: "/dashboards/663?Name={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
+            &Client%20Report%20Status={{ _filters['vwtradingsuite_monthly.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
@@ -41,7 +42,7 @@ view: vwtradingsuite_monthly {
     link: {
       label: "See Job Detail for {{value}}"
       url: "/dashboards/656?Account%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite_monthly.accountmanager']}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-             &Week="
+             &Week=&Client%20Report%20Status={{ _filters['vwtradingsuite_monthly.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
@@ -53,7 +54,7 @@ view: vwtradingsuite_monthly {
     link: {
       label: "See Job Detail for {{value}}"
       url: "/dashboards/656?Client%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite_monthly.accountmanager']}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-             &Week="
+             &Week=&Client%20Report%20Status={{ _filters['vwtradingsuite_monthly.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
@@ -65,7 +66,7 @@ view: vwtradingsuite_monthly {
     link: {
       label: "See Job Detail for {{value}}"
       url: "/dashboards/656?Client%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite_monthly.accountmanager']}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-             &Week="
+             &Week=&Client%20Report%20Status={{ _filters['vwtradingsuite_monthly.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
@@ -84,7 +85,7 @@ view: vwtradingsuite_monthly {
     link: {
       label: "See Job Detail for {{value}}"
       url: "/dashboards/656?Consol%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite_monthly.accountmanager']}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-              &Week="
+              &Week=&Client%20Report%20Status={{ _filters['vwtradingsuite_monthly.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
@@ -97,7 +98,7 @@ view: vwtradingsuite_monthly {
     link: {
       label: "See Job Detail for {{value}}"
       url: "/dashboards/656?Consol%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite_monthly.accountmanager']}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-             &Week="
+             &Week=&Client%20Report%20Status={{ _filters['vwtradingsuite_monthly.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
@@ -107,14 +108,16 @@ view: vwtradingsuite_monthly {
     sql: ${TABLE}."DEPARTMENT" ;;
     drill_fields: [sfdivision,managername,accountmanager]
     link: {
-      label: "See Job Detail for {{value}}"
-      url: "/dashboards/661?Department={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}} "
+      label: "See Department Detail for {{value}}"
+      url: "/dashboards/661?Department={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
+            &Client%20Report%20Status={{ _filters['vwtradingsuite_monthly.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
 
     link: {
       label: "See Client Detail for {{value}}"
-      url: "/dashboards/663?Department={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}} "
+      url: "/dashboards/663?Department={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
+            &Client%20Report%20Status={{ _filters['vwtradingsuite_monthly.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
 
@@ -144,7 +147,8 @@ view: vwtradingsuite_monthly {
     drill_fields: [accountmanager]
     link: {
       label: "See Detail for {{value}}"
-      url: "/dashboards/662?Name={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}} "
+      url: "/dashboards/662?Name={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
+            &Client%20Report%20Status={{ _filters['vwtradingsuite_monthly.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
@@ -224,13 +228,15 @@ view: vwtradingsuite_monthly {
     drill_fields: [managername,accountmanager]
     link: {
       label: "See Detail for {{value}}"
-      url: "/dashboards/661?Division={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}} "
+      url: "/dashboards/661?Division={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
+            &Client%20Report%20Status={{ _filters['vwtradingsuite_monthly.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
 
     link: {
       label: "See Client Detail for {{value}}"
-      url: "/dashboards/663?Division={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}} "
+      url: "/dashboards/663?Division={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
+            &Client%20Report%20Status={{ _filters['vwtradingsuite_monthly.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }

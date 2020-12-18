@@ -7,7 +7,8 @@ view: vwtradingsuite {
     sql: ${TABLE}."ACCOUNTCODE" ;;
     link: {
       label: "See Detail for {{value}}"
-      url: "/dashboards/656?Account%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}"
+      url: "/dashboards/656?Account%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}
+            &Client%20Report%20Status={{ _filters['vwtradingsuite.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
@@ -36,7 +37,8 @@ view: vwtradingsuite {
     sql: ${TABLE}."ACCOUNTNAME" ;;
     link: {
       label: "See Detail for {{value}}"
-      url: "/dashboards/656?Account%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}"
+      url: "/dashboards/656?Account%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}
+            &Client%20Report%20Status={{ _filters['vwtradingsuite.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
@@ -47,7 +49,8 @@ view: vwtradingsuite {
     drill_fields: [consolcardconsolname,consolcode,accountcode,accountname,accountmanager]
     link: {
       label: "See Detail for {{value}}"
-      url: "/dashboards/656?Client%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}"
+      url: "/dashboards/656?Client%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}
+            &Client%20Report%20Status={{ _filters['vwtradingsuite.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
@@ -58,7 +61,8 @@ view: vwtradingsuite {
     drill_fields: [consolcardconsolname,consolcode,accountcode,accountname,accountmanager]
     link: {
       label: "See Detail for {{value}}"
-      url: "/dashboards/656?Account%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}"
+      url: "/dashboards/656?Account%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}
+            &Client%20Report%20Status={{ _filters['vwtradingsuite.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
@@ -76,7 +80,8 @@ view: vwtradingsuite {
     drill_fields: [accountcode,accountname,accountmanager]
     link: {
       label: "See Detail for {{value}}"
-      url: "/dashboards/656?Consol%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}"
+      url: "/dashboards/656?Consol%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}
+           &Client%20Report%20Status={{ _filters['vwtradingsuite.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
@@ -87,7 +92,8 @@ view: vwtradingsuite {
     drill_fields: [accountcode,accountname,accountmanager]
     link: {
       label: "See Detail for {{value}}"
-      url: "/dashboards/656?Consol%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}"
+      url: "/dashboards/656?Consol%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}
+           &Client%20Report%20Status={{ _filters['vwtradingsuite.clientreportstatus']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
