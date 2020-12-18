@@ -621,6 +621,20 @@ view: tradingjobs {
 
   ###########################   measures   #############################
 
+  measure: Number_of_bookings {
+
+    type: sum
+    sql: ${jobcount} ;;
+    value_format_name: decimal_0
+    html:
+    <font color=cyan > No.Of Bookings {{rendered_value}} <font color=lime> || {{Number_of_bookings._rendered_value}} No.Of Bookings <font color=#a1a1a1 > | {{sum_of_revenue_actual._rendered_value}} Revenue ;;
+    # {{sum_of_revenue_actual._rendered_value}} Revenue <font color=pink> || {{sum_of_cost_actual._rendered_value}} Profit
+    #
+    #drill_fields: [margin_details*]
+  }
+
+
+
   measure: sum_of_revenue {
     group_label: "Revenue"
     type: sum
@@ -729,19 +743,19 @@ set: explore_set {
     profit_actual,margin_actual,
     title,department,sfdivision,user_name,managername,frompostcode,topostcode,fromlatitude,fromlongitude,tolatitude,tolongitude,fromLonglat,toLonglat,
     sum_of_revenue,sum_of_discount,sum_of_revenue_actual,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,
-    sum_of_ndjcost,sum_of_cost_actual,sum_of_profit_actual,sum_of_margin_actual,sum_of_jobcount]
+    sum_of_ndjcost,sum_of_cost_actual,sum_of_profit_actual,sum_of_margin_actual,sum_of_jobcount,Number_of_bookings]
 }
 
 set: revenue_details {
-     fields: [currentclientcode,currentclientname,booking_month_name,sum_of_revenue_actual]
+     fields: [currentclientcode,currentclientname,booking_month_name,Number_of_bookings,sum_of_revenue_actual]
 }
 
   set: cost_details {
-    fields: [currentclientcode,currentclientname,booking_month_name,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,sum_of_ndjcost]
+    fields: [currentclientcode,currentclientname,booking_month_name,Number_of_bookings,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,sum_of_ndjcost]
   }
 
   set: margin_details {
-    fields: [currentclientcode,currentclientname,booking_month_name,sum_of_revenue,sum_of_discount,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,sum_of_ndjcost,sum_of_profit_actual,sum_of_margin_actual]
+    fields: [currentclientcode,currentclientname,booking_month_name,Number_of_bookings,sum_of_revenue,sum_of_discount,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,sum_of_ndjcost,sum_of_profit_actual,sum_of_margin_actual]
   }
 
 
