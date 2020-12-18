@@ -344,6 +344,7 @@ view: tradingjobs {
     type: number
     sql: ${TABLE}."JOBNO" ;;
     value_format_name: id
+    drill_fields: [servicecode,servicedescription]
   }
 
   dimension: linehaulcost {
