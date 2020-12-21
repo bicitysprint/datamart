@@ -754,7 +754,7 @@ set: revenue_details {
   }
 
   set: map_details {
-    fields: [jobno,accountcode,accountname,frompostcode,topostcode,sum_of_revenue_actual,sum_of_margin_actual]
+    fields: [jobno,accountcode,accountname,servicecode,servicedescription,frompostcode,topostcode,sum_of_revenue_actual,sum_of_margin_actual]
   }
 
 
