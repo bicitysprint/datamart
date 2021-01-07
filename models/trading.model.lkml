@@ -64,6 +64,11 @@ explore: tradingjobs {
     user_attribute: account_owner_filter
   }
 
+  # access_filter: {
+  #   field: tradingjobs.managername
+  #   user_attribute: team_manager_filter
+  # }
+
 }
 
 explore: vwtradingsuite {
@@ -77,6 +82,11 @@ explore: vwtradingsuite {
     field: vwtradingsuite.user_name
     user_attribute: account_owner_filter
   }
+
+  # access_filter: {
+  #   field: vwtradingsuite.managername
+  #   user_attribute: team_manager_filter
+  # }
   #fields: [tradingjobs.explore_set*]
 
 }
@@ -92,6 +102,10 @@ explore: vwtradingsuite_monthly {
     field: vwtradingsuite_monthly.user_name
     user_attribute: account_owner_filter
   }
+  # access_filter: {
+  #   field: vwtradingsuite_monthly.managername
+  #   user_attribute: team_manager_filter
+  # }
 
   # join: tradingjobs {
   #   type: left_outer

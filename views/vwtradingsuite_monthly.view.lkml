@@ -218,6 +218,13 @@ view: vwtradingsuite_monthly {
     value_format_name: gbp
   }
 
+  dimension: profitforecastprorata {
+    type: number
+    sql: ${TABLE}."PROFITFORECASTPRORATA" ;;
+    value_format_name: gbp
+  }
+
+
   dimension: margin {
     type: number
     sql:  case when ${revenue} = 0 then 0 else
@@ -254,6 +261,12 @@ view: vwtradingsuite_monthly {
   dimension: revenueforecast {
     type: number
     sql: ${TABLE}."REVENUEFORECAST" ;;
+    value_format_name: gbp
+  }
+
+  dimension: revenueforecastprorata {
+    type: number
+    sql: ${TABLE}."REVENUEFORECASTPRORATA" ;;
     value_format_name: gbp
   }
 
@@ -365,6 +378,13 @@ view: vwtradingsuite_monthly {
     drill_fields: [revenue_detail*]
   }
 
+  measure: sum_of_revenue_forecast_prorata {
+    type: sum
+    sql: ${revenueforecastprorata} ;;
+    value_format_name: gbp
+    drill_fields: [revenue_prorata_detail*]
+  }
+
   measure: sum_of_profit {
     type: sum
     sql: ${profit} ;;
@@ -377,6 +397,13 @@ view: vwtradingsuite_monthly {
     sql: ${profitforecast};;
     value_format_name: gbp
     drill_fields: [profit_detail*]
+  }
+
+  measure: sum_of_profit_forecast_prorata {
+    type: sum
+    sql: ${profitforecastprorata};;
+    value_format_name: gbp
+    drill_fields: [profit_prorata_detail*]
   }
 
   measure: sum_of_margin {
@@ -401,8 +428,16 @@ view: vwtradingsuite_monthly {
     fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_revenue,sum_of_revenue_forecast]
   }
 
+  set: revenue_prorata_detail {
+    fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_revenue,sum_of_revenue_forecast_prorata]
+  }
+
   set: profit_detail {
     fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_profit,sum_of_profit_forecast]
+  }
+
+  set: profit_prorata_detail {
+    fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_profit,sum_of_profit_forecast_prorata]
   }
 
   set: margin_detail {
