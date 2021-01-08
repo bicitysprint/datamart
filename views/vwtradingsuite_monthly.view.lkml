@@ -30,6 +30,13 @@ view: vwtradingsuite_monthly {
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
 
+    link: {
+      label: "See Individual Detail for {{value}}"
+      url: "/dashboards/673?Account%20Manager={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
+      &Client%20Report%20Status={{ _filters['vwtradingsuite_monthly.clientreportstatus']}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
+
     drill_fields: [clientcode,clientname,consolcode,consolcardconsolname,accountcode,accountname]
   }
 
