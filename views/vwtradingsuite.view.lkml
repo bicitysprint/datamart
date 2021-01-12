@@ -38,7 +38,7 @@ view: vwtradingsuite {
     link: {
       label: "See Detail for {{value}}"
       url: "/dashboards/656?Account%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}
-            &Client%20Report%20Status={{ _filters['vwtradingsuite.clientreportstatus']}}"
+            &Client%20Report%20Status={{ _filters['vwtradingsuite.clientreportstatus']}}&Week={{ _filters['vwtradingsuite.wc_date']}}&Year=&Month=&Date="
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
