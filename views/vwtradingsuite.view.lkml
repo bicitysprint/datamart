@@ -166,6 +166,13 @@ view: vwtradingsuite {
     value_format_name: gbp
   }
 
+  dimension: profitforecastcomp {
+    type: number
+    sql: ${profit}-${profitforecast} ;;
+    value_format_name: gbp
+
+  }
+
   dimension: reportgroup {
     type: string
     sql: ${TABLE}."REPORTGROUP" ;;
@@ -189,6 +196,14 @@ view: vwtradingsuite {
     type: number
     sql: ${TABLE}."REVENUEFORECAST" ;;
     value_format_name: gbp
+
+  }
+
+  dimension: revforecastcomp {
+    type: number
+    sql: ${revenue}-${revenueforecast} ;;
+    value_format_name: gbp
+
   }
 
   dimension: sector1 {
@@ -259,6 +274,14 @@ view: vwtradingsuite {
 
   }
 
+  measure: sum_of_revenue_forecast_comparison {
+    type: sum
+    sql: ${revforecastcomp} ;;
+    value_format_name: gbp
+    #drill_fields: [revenue_detail*]
+
+  }
+
   measure: sum_of_profit {
     type: sum
     sql: ${profit} ;;
@@ -272,6 +295,14 @@ view: vwtradingsuite {
     sql: ${profitforecast} ;;
     value_format_name: gbp
     drill_fields: [profit_detail*]
+
+  }
+
+  measure: sum_of_profit_forecast_comparison {
+    type: sum
+    sql: ${profitforecastcomp} ;;
+    value_format_name: gbp
+    #drill_fields: [revenue_detail*]
 
   }
 
