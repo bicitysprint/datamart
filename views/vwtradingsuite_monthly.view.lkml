@@ -353,6 +353,17 @@ view: vwtradingsuite_monthly {
     sql: ${TABLE}."WCYEAR" ;;
   }
 
+  dimension: ccg {
+    type: string
+    sql: ${TABLE}."CCG" ;;
+  }
+
+  dimension: sc_name {
+    label: "Account Service Centre"
+    type: string
+    sql: ${TABLE}."SC_NAME" ;;
+  }
+
   ###########################      measures     ###########################
 
   measure: sum_of_revenue {
