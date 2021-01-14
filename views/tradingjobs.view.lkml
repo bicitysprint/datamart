@@ -620,6 +620,22 @@ view: tradingjobs {
     sql_longitude: ${tolongitude}  ;;
   }
 
+  dimension: ccg {
+    type: string
+    sql: ${TABLE}."CCG" ;;
+  }
+
+  dimension: sc_name {
+    label: "Account Service Centre"
+    type: string
+    sql: ${TABLE}."SC_NAME" ;;
+  }
+
+  dimension: driverkey {
+    type: string
+    sql: ${TABLE}."DRIVERKEY" ;;
+  }
+
   ###########################   measures   #############################
 
   measure: Number_of_bookings {
@@ -738,7 +754,7 @@ set: explore_set {
     profit_actual,margin_actual,
     title,department,sfdivision,user_name,managername,frompostcode,topostcode,fromlatitude,fromlongitude,tolatitude,tolongitude,fromLonglat,toLonglat,
     sum_of_revenue,sum_of_discount,sum_of_revenue_actual,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,
-    sum_of_ndjcost,sum_of_cost_actual,sum_of_profit_actual,sum_of_margin_actual,sum_of_jobcount,Number_of_bookings]
+    sum_of_ndjcost,sum_of_cost_actual,sum_of_profit_actual,sum_of_margin_actual,sum_of_jobcount,Number_of_bookings,ccg,sc_name,driverkey]
 }
 
 set: revenue_details {
