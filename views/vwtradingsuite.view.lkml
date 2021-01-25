@@ -267,6 +267,30 @@ view: vwtradingsuite {
     sql: ${TABLE}."SC_NAME" ;;
   }
 
+  dimension: regional_manager {
+    label: "Regional Manager"
+    type: string
+    sql: ${TABLE}."REGIONAL_MANAGER" ;;
+  }
+
+  dimension: servicecentre_manager {
+    label: "Service Centre Manager"
+    type: string
+    sql: ${TABLE}."SERVICECENTRE_MANAGER" ;;
+  }
+
+  dimension: acq_code {
+    label: "Acquisition Code"
+    type: string
+    sql: ${TABLE}."ACQ_CODE" ;;
+  }
+
+  dimension: forecast_key {
+    label: "Key or Core"
+    type: string
+    sql: ${TABLE}."FORECAST_KEY" ;;
+  }
+
   #########################    measures  ###########################
 
   measure: sum_of_revenue {
