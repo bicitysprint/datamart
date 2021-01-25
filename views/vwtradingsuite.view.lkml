@@ -50,7 +50,7 @@ view: vwtradingsuite {
     link: {
       label: "See Detail for {{value}}"
       url: "/dashboards/656?Client%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite.accountmanager']}}
-            &CCG={{ _filters['vwtradingsuite.ccg']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite.reportgroup']}}"
+            &Key%20or%20Core={{ _filters['vwtradingsuite.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite.reportgroup']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
