@@ -464,6 +464,37 @@ view: vwtradingsuite_monthly {
     drill_fields: [margin_detail*]
   }
 
+  measure: sum_of_revenue_forecast_ytd {
+    type: number
+    sql: coalesce(sum(
+         case when
+                   ((${TABLE}."WCMONTHDATE"  < (TO_DATE(DATEADD('month', 0, DATE_TRUNC('month', CURRENT_DATE())))))) AND
+                   ((((${TABLE}."WCMONTHDATE") >= ((TO_DATE(DATE_TRUNC('year', CURRENT_DATE())))) AND
+                   (${TABLE}."WCMONTHDATE") < ((TO_DATE(DATEADD('year', 1, DATE_TRUNC('year', CURRENT_DATE()))))))))
+                    then ${revenueforecast} end),0)+
+                    coalesce(sum(${revenueforecastprorata}),0) ;;
+    value_format_name: gbp
+    drill_fields: [revenue_ytd_detail*]
+  }
+
+  measure: sum_of_profit_forecast_ytd {
+    type: number
+    sql: coalesce(sum(
+         case when
+                   ((${TABLE}."WCMONTHDATE"  < (TO_DATE(DATEADD('month', 0, DATE_TRUNC('month', CURRENT_DATE())))))) AND
+                   ((((${TABLE}."WCMONTHDATE") >= ((TO_DATE(DATE_TRUNC('year', CURRENT_DATE())))) AND
+                   (${TABLE}."WCMONTHDATE") < ((TO_DATE(DATEADD('year', 1, DATE_TRUNC('year', CURRENT_DATE()))))))))
+                    then ${profitforecast} end),0)+
+                    coalesce(sum(${profitforecastprorata}),0) ;;
+    value_format_name: gbp
+    drill_fields: [profit_ytd_detail*]
+  }
+
+
+
+
+
+
   ######################    drill sets   #######################
 
   set: revenue_detail {
@@ -474,12 +505,20 @@ view: vwtradingsuite_monthly {
     fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_revenue,sum_of_revenue_forecast_prorata]
   }
 
+  set: revenue_ytd_detail {
+    fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_revenue,sum_of_revenue_forecast_ytd]
+  }
+
   set: profit_detail {
     fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_profit,sum_of_profit_forecast]
   }
 
   set: profit_prorata_detail {
     fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_profit,sum_of_profit_forecast_prorata]
+  }
+
+  set: profit_ytd_detail {
+    fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_profit,sum_of_profit_forecast_ytd]
   }
 
   set: margin_detail {
