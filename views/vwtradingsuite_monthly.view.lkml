@@ -8,7 +8,8 @@ view: vwtradingsuite_monthly {
     link: {
       label: "See Job Detail for {{value}}"
       url: "/dashboards/656?Account%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite_monthly.accountmanager']}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-             &Week=&Date=&Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}"
+             &Week=&Date=&Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}
+             &Acquisition%20Code={{ _filters['vwtradingsuite_monthly.acq_code']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
@@ -26,14 +27,16 @@ view: vwtradingsuite_monthly {
     link: {
       label: "See Client Detail for {{value}}"
       url: "/dashboards/663?Name={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-            &Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}"
+            &Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}
+            &Acquisition%20Code={{ _filters['vwtradingsuite_monthly.acq_code']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
 
     link: {
       label: "See Individual Detail for {{value}}"
       url: "/dashboards/673?Account%20Manager={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-      &Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}"
+            &Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}
+            &Acquisition%20Code={{ _filters['vwtradingsuite_monthly.acq_code']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
 
@@ -64,14 +67,16 @@ view: vwtradingsuite_monthly {
     link: {
       label: "See Consol Detail for {{value}}"
       url: "/dashboards/669?Client%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite_monthly.accountmanager']}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-      &Week=&Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}"
+           &Week=&Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}
+           &Acquisition%20Code={{ _filters['vwtradingsuite_monthly.acq_code']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
 
     link: {
       label: "See Account Detail for {{value}}"
       url: "/dashboards/670?Client%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite_monthly.accountmanager']}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-      &Week=&Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}"
+           &Week=&Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}
+           &Acquisition%20Code={{ _filters['vwtradingsuite_monthly.acq_code']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
 
@@ -91,14 +96,16 @@ view: vwtradingsuite_monthly {
     link: {
       label: "See Consol Detail for {{value}}"
       url: "/dashboards/669?Client%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite_monthly.accountmanager']}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-      &Week=&Date=&Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}"
+           &Week=&Date=&Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}
+           &Acquisition%20Code={{ _filters['vwtradingsuite_monthly.acq_code']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
 
     link: {
       label: "See Account Detail for {{value}}"
       url: "/dashboards/670?Client%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite_monthly.accountmanager']}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-      &Week=&Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}"
+           &Week=&Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}
+           &Acquisition%20Code={{ _filters['vwtradingsuite_monthly.acq_code']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
 
@@ -125,7 +132,8 @@ view: vwtradingsuite_monthly {
     link: {
       label: "See Account Detail for {{value}}"
       url: "/dashboards/670?Consol%20Name={{value}}&Account%20Manager={{ _filters['vwtradingsuite_monthly.accountmanager']}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-      &Week=&Date=&Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}"
+           &Week=&Date=&Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}
+           &Acquisition%20Code={{ _filters['vwtradingsuite_monthly.acq_code']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
 
@@ -146,7 +154,8 @@ view: vwtradingsuite_monthly {
     link: {
       label: "See Account Detail for {{value}}"
       url: "/dashboards/670?Consol%20Code={{value}}&Account%20Manager={{ _filters['vwtradingsuite_monthly.accountmanager']}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-      &Week=&Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}"
+           &Week=&Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}
+           &Acquisition%20Code={{ _filters['vwtradingsuite_monthly.acq_code']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
 
@@ -165,14 +174,16 @@ view: vwtradingsuite_monthly {
     link: {
       label: "See Department Detail for {{value}}"
       url: "/dashboards/661?Department={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-            &Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}"
+            &Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}
+            &Acquisition%20Code={{ _filters['vwtradingsuite_monthly.acq_code']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
 
     link: {
       label: "See Client Detail for {{value}}"
       url: "/dashboards/663?Department={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-            &Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}"
+            &Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}
+            &Acquisition%20Code={{ _filters['vwtradingsuite_monthly.acq_code']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
 
@@ -203,7 +214,8 @@ view: vwtradingsuite_monthly {
     link: {
       label: "See Detail for {{value}}"
       url: "/dashboards/662?Name={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-            &Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}"
+            &Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}
+            &Acquisition%20Code={{ _filters['vwtradingsuite_monthly.acq_code']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
@@ -297,14 +309,16 @@ view: vwtradingsuite_monthly {
     link: {
       label: "See Detail for {{value}}"
       url: "/dashboards/661?Division={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-            &Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}"
+            &Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}
+            &Acquisition%20Code={{ _filters['vwtradingsuite_monthly.acq_code']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
 
     link: {
       label: "See Client Detail for {{value}}"
       url: "/dashboards/663?Division={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
-            &Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}"
+            &Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Account%20Service%20Centre={{ _filters['vwtradingsuite_monthly.sc_name']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}
+            &Acquisition%20Code={{ _filters['vwtradingsuite_monthly.acq_code']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
   }
