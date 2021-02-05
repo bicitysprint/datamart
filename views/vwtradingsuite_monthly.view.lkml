@@ -402,6 +402,20 @@ view: vwtradingsuite_monthly {
     sql: ${TABLE}."FORECAST_KEY" ;;
   }
 
+  dimension: revforecastcomp {
+    type: number
+    sql: ${revenue}-${revenueforecast} ;;
+    value_format_name: gbp
+
+  }
+
+  dimension: profitforecastcomp {
+    type: number
+    sql: ${profit}-${profitforecast} ;;
+    value_format_name: gbp
+
+  }
+
   ###########################      measures     ###########################
 
   measure: sum_of_revenue {
@@ -504,7 +518,21 @@ view: vwtradingsuite_monthly {
     drill_fields: [profit_ytd_detail*]
   }
 
+  measure: sum_of_revenue_forecast_comparison {
+    type: sum
+    sql: ${revforecastcomp} ;;
+    value_format_name: gbp
+    #drill_fields: [revenue_detail*]
 
+  }
+
+  measure: sum_of_profit_forecast_comparison {
+    type: sum
+    sql: ${profitforecastcomp} ;;
+    value_format_name: gbp
+    #drill_fields: [revenue_detail*]
+
+  }
 
 
 
