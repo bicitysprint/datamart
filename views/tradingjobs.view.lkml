@@ -641,7 +641,7 @@ view: tradingjobs {
   dimension: custlevyamt {
     label: "Customer Fuel Charge"
     type: number
-    sql: ${TABLE}."CUST_LEVT_AMT" ;;
+    sql: ${TABLE}."CUST_LEVY_AMT" ;;
     value_format_name: gbp
   }
 
