@@ -201,6 +201,8 @@ view: tradingjobs {
   }
 
   dimension: costadjustment {
+    group_label: "Costs"
+    label: "Othercost"
     type: number
     sql: ${TABLE}."COSTADJUSTMENT" ;;
     value_format_name: gbp
@@ -515,7 +517,7 @@ view: tradingjobs {
     description: "Total Cost (Driver+Agent+Trunk+Linehaul+NDJ"
     type: number
     sql:  ${TABLE}."DRIVERCOST" + ${TABLE}."AGENTCOST" + ${TABLE}."TRUNKCOST" +
-          ${TABLE}."LINEHAULCOST" + ${TABLE}."NDJCOST"   ;;
+          ${TABLE}."LINEHAULCOST" + ${TABLE}."NDJCOST" + ${TABLE}."COSTADJUSTMENT"  ;;
     value_format_name: gbp
   }
 
@@ -636,6 +638,41 @@ view: tradingjobs {
     sql: ${TABLE}."DRIVERKEY" ;;
   }
 
+  dimension: custlevyamt {
+    label: "Customer Fuel Charge"
+    type: number
+    sql: ${TABLE}."CUST_LEVT_AMT" ;;
+    value_format_name: gbp
+  }
+
+  dimension: wt_amount {
+    label: "Waiting Time Amount"
+    type: number
+    sql: ${TABLE}."WT_AMOUNT" ;;
+    value_format_name: gbp
+  }
+
+  dimension: wt_units {
+    label: "Waiting Time Units"
+    type: number
+    sql: ${TABLE}."WT_UNITS" ;;
+    value_format_name: decimal_0
+  }
+
+  dimension: wr_amount {
+    label: "Wait and Return Amount"
+    type: number
+    sql: ${TABLE}."WR_AMOUNT" ;;
+    value_format_name: gbp
+  }
+
+  dimension: wr_units {
+    label: "Wait and Return Units"
+    type: number
+    sql: ${TABLE}."WR_UNITS" ;;
+    value_format_name: decimal_0
+  }
+
   ###########################   measures   #############################
 
   measure: Number_of_bookings {
@@ -711,6 +748,15 @@ view: tradingjobs {
     drill_fields: [cost_details*]
   }
 
+  measure: sum_of_other_cost {
+    label: "Other Costs"
+    group_label: "Costs"
+    type: sum
+    sql: ${costadjustment} ;;
+    value_format_name: gbp
+    drill_fields: [cost_details*]
+  }
+
   measure: sum_of_cost_actual {
     group_label: "Costs"
     type: sum
@@ -750,11 +796,11 @@ set: explore_set {
 
     fields: [archive,archive_date,archive_month_number,archive_name_of_month,archive_year,jobno,booking_date,booking_month,booking_month_num,booking_month_name,booking_week,booking_week_of_year,booking_year,
     reportgroup,clientreportstatus,currentclientcode,currentclientname,currentconsolcode,currentconsolname,accountcode,accountname,currentaccountmanager,opptype,forecast_key,
-    fckey_name,servicecode,servicedescription,umbrellaservice,revenue,discount,revenue_actual,drivercost,agentcost,trunkcost,linehaulcost,ndjcost,cost_actual,
-    profit_actual,margin_actual,
+    fckey_name,servicecode,servicedescription,umbrellaservice,revenue,discount,revenue_actual,drivercost,agentcost,trunkcost,linehaulcost,ndjcost,costadjustment,cost_actual,
+    profit_actual,margin_actual,custlevyamt,wt_units,wt_amount,wr_units,wr_amount,ccg,sc_name,driverkey,permflag,
     title,department,sfdivision,user_name,managername,frompostcode,topostcode,fromlatitude,fromlongitude,tolatitude,tolongitude,fromLonglat,toLonglat,
     sum_of_revenue,sum_of_discount,sum_of_revenue_actual,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,
-    sum_of_ndjcost,sum_of_cost_actual,sum_of_profit_actual,sum_of_margin_actual,sum_of_jobcount,Number_of_bookings,ccg,sc_name,driverkey]
+    sum_of_ndjcost,sum_of_cost_actual,sum_of_profit_actual,sum_of_margin_actual,sum_of_jobcount,Number_of_bookings,sum_of_other_cost]
 }
 
 set: revenue_details {
