@@ -421,7 +421,7 @@ view: vwtradingsuite_monthly {
   measure: sum_of_job_count {
     type: sum
     sql: ${jobcount} ;;
-    value_format_name: gbp
+    value_format_name: decimal_0
     drill_fields: [jobcount_detail*]
   }
 
