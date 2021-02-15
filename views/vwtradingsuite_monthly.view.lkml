@@ -418,6 +418,13 @@ view: vwtradingsuite_monthly {
 
   ###########################      measures     ###########################
 
+  measure: sum_of_job_count {
+    type: sum
+    sql: ${jobcount} ;;
+    value_format_name: gbp
+    drill_fields: [jobcount_detail*]
+  }
+
   measure: sum_of_revenue {
     type: sum
     sql: ${revenue} ;;
@@ -541,6 +548,10 @@ view: vwtradingsuite_monthly {
 
   set: revenue_detail {
     fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_revenue,sum_of_revenue_forecast]
+  }
+
+  set: jobcount_detail {
+    fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_job_count,sum_of_revenue,sum_of_revenue_forecast]
   }
 
   set: revenue_prorata_detail {
