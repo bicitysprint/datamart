@@ -36,16 +36,10 @@ view: vwdemodata {
     sql: ${TABLE}."BOOKINGTYPE" ;;
   }
 
-  dimension: driverkey {
-    type: string
-    sql: ${TABLE}."DRIVERKEY" ;;
-  }
-
-  dimension: jobno {
-    primary_key: yes
+  dimension: jobcount {
     type: number
-    sql: ${TABLE}."JOBNO" ;;
-    value_format_name: id
+    sql: ${TABLE}."JOBCOUNT" ;;
+    value_format_name: decimal_0
   }
 
   dimension: revenue {
@@ -71,8 +65,8 @@ view: vwdemodata {
   }
 
   measure: number_of_jobs {
-    type: count_distinct
-    sql: ${jobno} ;;
+    type: sum
+    sql: ${jobcount} ;;
     drill_fields: [accountcode,bookingdatetime_year,bookingdatetime_month_name,number_of_jobs,sum_of_revenue]
   }
 
