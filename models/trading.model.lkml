@@ -64,6 +64,13 @@ explore: tradingjobs {
     user_attribute: account_owner_filter
   }
 
+  join: ut_regions_table {
+    sql_on: ${tradingjobs.servicecentrecode_mgmtac} = ${ut_regions_table.sales_code_d} ;;
+    relationship: many_to_one
+    view_label: "Trading Jobs"
+    fields: [ut_regions_table.explore_join*]
+  }
+
   # access_filter: {
   #   field: tradingjobs.managername
   #   user_attribute: team_manager_filter
