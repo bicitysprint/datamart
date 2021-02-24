@@ -64,6 +64,11 @@ explore: tradingjobs {
     user_attribute: account_owner_filter
   }
 
+  access_filter: {
+    field: ut_regions_table.grouped_name
+    user_attribute: trading_service_centre_filter
+  }
+
   join: ut_regions_table {
     sql_on: ${tradingjobs.servicecentrecode_mgmtac} = ${ut_regions_table.sales_code_d} ;;
     relationship: many_to_one
@@ -90,6 +95,11 @@ explore: vwtradingsuite {
     user_attribute: account_owner_filter
   }
 
+  access_filter: {
+    field: vwtradingsuite.managementaccountservicecentre
+    user_attribute: trading_service_centre_filter
+  }
+
   # access_filter: {
   #   field: vwtradingsuite.managername
   #   user_attribute: team_manager_filter
@@ -109,6 +119,12 @@ explore: vwtradingsuite_monthly {
     field: vwtradingsuite_monthly.user_name
     user_attribute: account_owner_filter
   }
+
+  access_filter: {
+    field: vwtradingsuite_monthly.managementaccountservicecentre
+    user_attribute: trading_service_centre_filter
+  }
+
   # access_filter: {
   #   field: vwtradingsuite_monthly.managername
   #   user_attribute: team_manager_filter
