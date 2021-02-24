@@ -420,6 +420,14 @@ view: vwtradingsuite_monthly {
     label: "Management Account Service Centre"
     type: string
     sql: replace(${TABLE}."MANAGEMENTACCOUNTSERVICECENTRE",'&','And') ;;
+    drill_fields: [clientcode,clientname,consolcode,consolcardconsolname,accountcode,accountname]
+    link: {
+      label: "See Client Detail for {{value}}"
+      url: "/dashboards/663?Management%20Account%20Service%20Centre={{value}}&Year={{ _filters['vwtradingsuite_monthly.wcmonthdate_year']}}&Month={{ _filters['vwtradingsuite_monthly.wcmonthdate_month_name']}}
+      &Key%20or%20Core={{ _filters['vwtradingsuite_monthly.forecast_key']}}&Report%20Group={{ _filters['vwtradingsuite_monthly.reportgroup']}}
+      &Acquisition%20Code={{ _filters['vwtradingsuite_monthly.acq_code']}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
   }
 
   ###########################      measures     ###########################

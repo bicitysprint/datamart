@@ -295,6 +295,7 @@ view: vwtradingsuite {
     label: "Management Account Service Centre"
     type: string
     sql: replace(${TABLE}."MANAGEMENTACCOUNTSERVICECENTRE" , '&','And') ;;
+    drill_fields: [clientcode,clientname,consolcode,consolcardconsolname,accountcode,accountname]
   }
 
   #########################    measures  ###########################
