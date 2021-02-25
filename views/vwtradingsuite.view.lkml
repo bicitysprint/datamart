@@ -355,6 +355,13 @@ view: vwtradingsuite {
     value_format_name: percent_2
   }
 
+  measure: sum_of_forecast_margin {
+    type: number
+    sql: case when sum(${revenueforecast}) 0 then 0 else
+      sum(${profitforecast}) / sum(${revenueforecast}) end    ;;
+    value_format_name: percent_2
+  }
+
 
 ########################      drill sets      ##########################
 set: revenue_detail {
