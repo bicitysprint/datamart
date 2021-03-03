@@ -797,7 +797,7 @@ set: explore_set {
     fields: [archive,archive_date,archive_month_number,archive_name_of_month,archive_year,jobno,booking_date,booking_month,booking_month_num,booking_month_name,booking_week,booking_week_of_year,booking_year,
     reportgroup,clientreportstatus,currentclientcode,currentclientname,currentconsolcode,currentconsolname,accountcode,accountname,currentaccountmanager,opptype,forecast_key,
     fckey_name,servicecode,servicedescription,umbrellaservice,revenue,discount,revenue_actual,drivercost,agentcost,trunkcost,linehaulcost,ndjcost,costadjustment,cost_actual,
-    profit_actual,margin_actual,custlevyamt,wt_units,wt_amount,wr_units,wr_amount,ccg,sc_name,driverkey,permflag,ut_regions_table.grouped_name,
+    profit_actual,margin_actual,custlevyamt,wt_units,wt_amount,wr_units,wr_amount,ccg,sc_name,driverkey,permflag,ut_regions_table.grouped_name,salesforce_account_hierarchy.forecast_key,
     title,department,sfdivision,user_name,managername,frompostcode,topostcode,fromlatitude,fromlongitude,tolatitude,tolongitude,fromLonglat,toLonglat,
     sum_of_revenue,sum_of_discount,sum_of_revenue_actual,sum_of_drivercost,sum_of_agentcost,sum_of_trunkcost,sum_of_linehaulcost,
     sum_of_ndjcost,sum_of_cost_actual,sum_of_profit_actual,sum_of_margin_actual,sum_of_jobcount,Number_of_bookings,sum_of_other_cost]

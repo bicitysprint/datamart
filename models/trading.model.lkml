@@ -76,6 +76,13 @@ explore: tradingjobs {
     fields: [ut_regions_table.explore_join*]
   }
 
+  join: salesforce_account_hierarchy {
+    sql_on: ${tradingjobs.accountcode} = ${salesforce_account_hierarchy.account_number} ;;
+    relationship: many_to_one
+    view_label: "Trading Jobs"
+    fields: [salesforce_account_hierarchy.forecast_key]
+  }
+
   # access_filter: {
   #   field: tradingjobs.managername
   #   user_attribute: team_manager_filter

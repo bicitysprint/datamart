@@ -174,6 +174,12 @@ view: salesforce_account_hierarchy {
     sql: ${TABLE}."SUB_DIVISION" ;;
   }
 
+  dimension: forecast_key {
+    label: "Key or Core"
+    type: string
+    sql: ${TABLE}."FORECAST_KEY" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
