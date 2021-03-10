@@ -1,6 +1,8 @@
 view: vwtradingsuite_monthly {
-  sql_table_name: "DATAMART"."VWTRADINGSUITE_MONTHLY"
+ sql_table_name: "DATAMART"."VWTRADINGSUITE_MONTHLY"
     ;;
+
+  ## sql_table_name: "DEV"."VWTRADINGSUITE_MONTHLY_DN"
 
   dimension: accountcode {
     type: string

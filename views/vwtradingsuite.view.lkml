@@ -2,6 +2,8 @@ view: vwtradingsuite {
   sql_table_name: "DATAMART"."VWTRADINGSUITE"
     ;;
 
+  ## sql_table_name: "DEV"."VWTRADINGSUITE_DN"
+
   dimension: accountcode {
     type: string
     sql: ${TABLE}."ACCOUNTCODE" ;;
