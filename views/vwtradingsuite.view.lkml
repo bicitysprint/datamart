@@ -300,6 +300,20 @@ view: vwtradingsuite {
     drill_fields: [clientcode,clientname,consolcode,consolcardconsolname,accountcode,accountname]
   }
 
+  dimension_group: dates_for_pop {
+
+    type: time
+
+    allow_fill: no
+
+    timeframes: [time, date, week, month, day_of_week, hour_of_day, raw, week_of_year, year]
+
+    datatype: date
+
+    sql: ${TABLE}."WC" ;;
+
+  }
+
   #########################    measures  ###########################
 
   measure: sum_of_revenue {
