@@ -567,31 +567,31 @@ view: vwtradingsuite_monthly {
   }
 
   set: jobcount_detail {
-    fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_job_count,sum_of_revenue,sum_of_revenue_forecast]
+    fields: [clientcode,clientname,accountmanager,forecast_key,wcmonthdate_year,wcmonthdate_month_name,sum_of_job_count,sum_of_revenue,sum_of_revenue_forecast]
   }
 
   set: revenue_prorata_detail {
-    fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_revenue,sum_of_revenue_forecast_prorata]
+    fields: [clientcode,clientname,accountmanager,forecast_key,wcmonthdate_year,wcmonthdate_month_name,sum_of_revenue,sum_of_revenue_forecast_prorata]
   }
 
   set: revenue_ytd_detail {
-    fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_revenue,sum_of_revenue_forecast_ytd]
+    fields: [clientcode,clientname,accountmanager,forecast_key,wcmonthdate_year,wcmonthdate_month_name,sum_of_revenue,sum_of_revenue_forecast_ytd]
   }
 
   set: profit_detail {
-    fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_profit,sum_of_profit_forecast]
+    fields: [clientcode,clientname,accountmanager,forecast_key,wcmonthdate_year,wcmonthdate_month_name,sum_of_profit,sum_of_profit_forecast]
   }
 
   set: profit_prorata_detail {
-    fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_profit,sum_of_profit_forecast_prorata]
+    fields: [clientcode,clientname,accountmanager,forecast_key,wcmonthdate_year,wcmonthdate_month_name,sum_of_profit,sum_of_profit_forecast_prorata]
   }
 
   set: profit_ytd_detail {
-    fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_profit,sum_of_profit_forecast_ytd]
+    fields: [clientcode,clientname,accountmanager,forecast_key,wcmonthdate_year,wcmonthdate_month_name,sum_of_profit,sum_of_profit_forecast_ytd]
   }
 
   set: margin_detail {
-    fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_revenue,sum_of_profit,sum_of_margin]
+    fields: [clientcode,clientname,accountmanager,forecast_key,wcmonthdate_year,wcmonthdate_month_name,sum_of_revenue,sum_of_profit,sum_of_margin]
   }
 
 }
