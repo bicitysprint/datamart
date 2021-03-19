@@ -563,7 +563,7 @@ view: vwtradingsuite_monthly {
   ######################    drill sets   #######################
 
   set: revenue_detail {
-    fields: [clientcode,clientname,wcmonthdate_year,wcmonthdate_month_name,sum_of_revenue,sum_of_revenue_forecast]
+    fields: [clientcode,clientname,accountmanager,forecast_key,wcmonthdate_year,wcmonthdate_month_name,sum_of_revenue,sum_of_revenue_forecast]
   }
 
   set: jobcount_detail {
