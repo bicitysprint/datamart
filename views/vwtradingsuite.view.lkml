@@ -314,6 +314,12 @@ view: vwtradingsuite {
 
   }
 
+  dimension: techdigitalsignup {
+    label: "Digital Signup"
+    type: string
+    sql: ${TABLE}."TECHDIGITALSIGNUP" ;;
+  }
+
   #########################    measures  ###########################
 
   measure: sum_of_revenue {
