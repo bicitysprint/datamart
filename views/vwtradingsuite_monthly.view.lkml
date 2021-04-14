@@ -228,18 +228,21 @@ view: vwtradingsuite_monthly {
   }
 
   dimension: profit {
+    group_label: "Margin & Profit"
     type: number
     sql: ${TABLE}."PROFIT" ;;
     value_format_name: gbp
   }
 
   dimension: profitforecast {
+    group_label: "Margin & Profit"
     type: number
     sql: ${TABLE}."PROFITFORECAST" ;;
     value_format_name: gbp
   }
 
   dimension: profitforecastprorata {
+    group_label: "Margin & Profit"
     type: number
     sql: ${TABLE}."PROFITFORECASTPRORATA" ;;
     value_format_name: gbp
@@ -247,6 +250,7 @@ view: vwtradingsuite_monthly {
 
 
   dimension: margin {
+    group_label: "Margin & Profit"
     type: number
     sql:  case when ${revenue} = 0 then 0 else
           ${profit} / ${revenue} end  ;;
@@ -254,6 +258,7 @@ view: vwtradingsuite_monthly {
   }
 
   dimension: margin_forecast {
+    group_label: "Margin & Profit"
     type: number
     sql:  case when ${revenueforecast} = 0 then 0 else
       ${profitforecast} / ${revenueforecast} end  ;;
@@ -274,18 +279,22 @@ view: vwtradingsuite_monthly {
   }
 
   dimension: revenue {
+    group_label: "Revenue"
+    description: "Total Revenue (Revenue and Discount)"
     type: number
     sql: ${TABLE}."REVENUE" ;;
     value_format_name: gbp
   }
 
   dimension: revenueforecast {
+    group_label: "Revenue"
     type: number
     sql: ${TABLE}."REVENUEFORECAST" ;;
     value_format_name: gbp
   }
 
   dimension: revenueforecastprorata {
+    group_label: "Revenue"
     type: number
     sql: ${TABLE}."REVENUEFORECASTPRORATA" ;;
     value_format_name: gbp
@@ -405,6 +414,8 @@ view: vwtradingsuite_monthly {
   }
 
   dimension: revforecastcomp {
+    label: "Revenue Vs Forecast Comparison"
+    group_label: "Revenue"
     type: number
     sql: ${revenue}-${revenueforecast} ;;
     value_format_name: gbp
@@ -412,6 +423,8 @@ view: vwtradingsuite_monthly {
   }
 
   dimension: profitforecastcomp {
+    group_label: "Margin & Profit"
+    label: "Profit Vs Forecast Comparison"
     type: number
     sql: ${profit}-${profitforecast} ;;
     value_format_name: gbp
@@ -438,6 +451,83 @@ view: vwtradingsuite_monthly {
     sql: ${TABLE}."TECHDIGITALSIGNUP" ;;
   }
 
+  ##  dimension financial breakdown
+
+  dimension: basicrevenue {
+    group_label: "Revenue"
+    label: "Basic Revenue"
+    type: number
+    sql: ${TABLE}."BASICREVENUE" ;;
+    value_format_name: gbp
+  }
+
+  dimension: discount {
+    group_label: "Revenue"
+    label: "Discount"
+    type: number
+    sql: ${TABLE}."DISCOUNT" ;;
+    value_format_name: gbp
+  }
+
+  dimension: cost {
+    group_label: "Cost"
+    label: "Cost"
+    description: "Total Cost (Drivercost,Agentcost,Trunkcost,Linehaulcost,NDJCost,Costadjustment)"
+    type: number
+    sql: ${TABLE}."COST" ;;
+    value_format_name: gbp
+  }
+
+  dimension: drivercost {
+    group_label: "Cost"
+    label: "Driver Cost"
+    type: number
+    sql: ${TABLE}."DRIVERCOST" ;;
+    value_format_name: gbp
+  }
+
+  dimension: agentcost {
+    group_label: "Cost"
+    label: "Agent Cost"
+    type: number
+    sql: ${TABLE}."AGENTCOST" ;;
+    value_format_name: gbp
+  }
+
+  dimension: trunkcost {
+    group_label: "Cost"
+    label: "Trunk Cost"
+    type: number
+    sql: ${TABLE}."TRUNKCOST" ;;
+    value_format_name: gbp
+  }
+
+  dimension: linehaulcost {
+    group_label: "Cost"
+    label: "Linehaul Cost"
+    type: number
+    sql: ${TABLE}."LINEHAULCOST" ;;
+    value_format_name: gbp
+  }
+
+  dimension: ndjcost {
+    group_label: "Cost"
+    label: "NDJ Cost"
+    description: "Non Distributed Job Cost"
+    type: number
+    sql: ${TABLE}."NDJCOST" ;;
+    value_format_name: gbp
+  }
+
+  dimension: costadjustment {
+    group_label: "Cost"
+    label: "Cost Adjustment"
+    description: "Costs distributed from cost accounts"
+    type: number
+    sql: ${TABLE}."COSTADJUSTMENT" ;;
+    value_format_name: gbp
+  }
+
   ###########################      measures     ###########################
 
   measure: sum_of_job_count {
@@ -448,6 +538,8 @@ view: vwtradingsuite_monthly {
   }
 
   measure: sum_of_revenue {
+    group_label: "Revenue"
+    description: "Total Revenue (Revenue and Discount)"
     type: sum
     sql: ${revenue} ;;
     value_format_name: gbp
@@ -455,6 +547,7 @@ view: vwtradingsuite_monthly {
   }
 
   measure: sum_of_revenue_ty {
+    group_label: "Revenue"
     hidden: yes
     type: sum
     sql: case when ${wcmonthdate_year} = (select (max(${wcmonthdate_year})) from ${TABLE} ) then ${revenue} end ;;
@@ -463,6 +556,7 @@ view: vwtradingsuite_monthly {
   }
 
   measure: sum_of_revenue_py {
+    group_label: "Revenue"
     hidden: yes
     type: sum
     sql: case when ${wcmonthdate_year} = (select (max(${wcmonthdate_year})-1) from ${TABLE} ) then ${revenue} end ;;
@@ -471,6 +565,7 @@ view: vwtradingsuite_monthly {
   }
 
   measure: sum_of_revenue_forecast {
+    group_label: "Revenue"
     type: sum
     sql: ${revenueforecast} ;;
     value_format_name: gbp
@@ -478,13 +573,31 @@ view: vwtradingsuite_monthly {
   }
 
   measure: sum_of_revenue_forecast_prorata {
+    group_label: "Revenue"
     type: sum
     sql: ${revenueforecastprorata} ;;
     value_format_name: gbp
     drill_fields: [revenue_prorata_detail*]
   }
 
+  measure: sum_of_basic_revenue {
+    group_label: "Revenue"
+    type: sum
+    sql: ${basicrevenue} ;;
+    value_format_name: gbp
+    drill_fields: []
+  }
+
+  measure: sum_of_discount {
+    group_label: "Revenue"
+    type: sum
+    sql: ${discount} ;;
+    value_format_name: gbp
+    drill_fields: []
+  }
+
   measure: sum_of_profit {
+    group_label: "Margin & Profit"
     type: sum
     sql: ${profit} ;;
     value_format_name: gbp
@@ -492,6 +605,7 @@ view: vwtradingsuite_monthly {
   }
 
   measure: sum_of_profit_forecast {
+    group_label: "Margin & Profit"
     type: sum
     sql: ${profitforecast};;
     value_format_name: gbp
@@ -499,6 +613,7 @@ view: vwtradingsuite_monthly {
   }
 
   measure: sum_of_profit_forecast_prorata {
+    group_label: "Margin & Profit"
     type: sum
     sql: ${profitforecastprorata};;
     value_format_name: gbp
@@ -506,6 +621,7 @@ view: vwtradingsuite_monthly {
   }
 
   measure: sum_of_margin {
+    group_label: "Margin & Profit"
     type: number
     sql:case when sum(${revenue}) = 0 then 0 else
         sum(${profit}) / sum(${revenue}) end  ;;
@@ -514,6 +630,7 @@ view: vwtradingsuite_monthly {
   }
 
   measure: sum_of_margin_forecast {
+    group_label: "Margin & Profit"
     type: number
     sql:case when sum(${revenueforecast}) = 0 then 0 else
       sum(${profitforecast}) / sum(${revenueforecast}) end  ;;
@@ -522,6 +639,7 @@ view: vwtradingsuite_monthly {
   }
 
   measure: sum_of_revenue_forecast_ytd {
+    group_label: "Revenue"
     type: number
     sql: coalesce(sum(
          case when
@@ -535,6 +653,7 @@ view: vwtradingsuite_monthly {
   }
 
   measure: sum_of_profit_forecast_ytd {
+    group_label: "Margin & Profit"
     type: number
     sql: coalesce(sum(
          case when
@@ -548,6 +667,7 @@ view: vwtradingsuite_monthly {
   }
 
   measure: sum_of_revenue_forecast_comparison {
+    group_label: "Revenue"
     type: sum
     sql: ${revforecastcomp} ;;
     value_format_name: gbp
@@ -556,6 +676,7 @@ view: vwtradingsuite_monthly {
   }
 
   measure: sum_of_profit_forecast_comparison {
+    group_label: "Margin & Profit"
     type: sum
     sql: ${profitforecastcomp} ;;
     value_format_name: gbp
@@ -563,7 +684,64 @@ view: vwtradingsuite_monthly {
 
   }
 
+  measure: sum_of_costs {
+    group_label: "Costs"
+    description: "Total Cost (Drivercost,Agentcost,Trunkcost,Linehaulcost,NDJCost,Costadjustment)"
+    type: sum
+    sql: ${cost} ;;
+    value_format_name: gbp
+    drill_fields: []
+  }
 
+  measure: sum_of_drivercost {
+    group_label: "Costs"
+    type: sum
+    sql: ${drivercost} ;;
+    value_format_name: gbp
+    drill_fields: []
+  }
+
+  measure: sum_of_agentcost {
+    group_label: "Costs"
+    type: sum
+    sql: ${agentcost} ;;
+    value_format_name: gbp
+    drill_fields: []
+  }
+
+  measure: sum_of_trunkcost {
+    group_label: "Costs"
+    type: sum
+    sql: ${trunkcost} ;;
+    value_format_name: gbp
+    drill_fields: []
+  }
+
+  measure: sum_of_linehaulcost {
+    group_label: "Costs"
+    type: sum
+    sql: ${linehaulcost} ;;
+    value_format_name: gbp
+    drill_fields: []
+  }
+
+  measure: sum_of_ndjcost {
+    group_label: "Costs"
+    description: "Non Distributed Job Cost"
+    type: sum
+    sql: ${ndjcost} ;;
+    value_format_name: gbp
+    drill_fields: []
+  }
+
+  measure: sum_of_costadjustment {
+    group_label: "Costs"
+    description: "Costs distributed from cost accounts"
+    type: sum
+    sql: ${costadjustment} ;;
+    value_format_name: gbp
+    drill_fields: []
+  }
 
 
   ######################    drill sets   #######################
