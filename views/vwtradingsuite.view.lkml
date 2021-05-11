@@ -320,6 +320,19 @@ view: vwtradingsuite {
     sql: ${TABLE}."TECHDIGITALSIGNUP" ;;
   }
 
+  dimension: office_code {
+    label: "Office Code"
+    type: string
+    sql: ${TABLE}."OFFICE_CODE" ;;
+  }
+
+  dimension: sc_grouped_name {
+    label: "Salesforce SC"
+    description: "To be used for LA Service Centres"
+    type: string
+    sql: ${TABLE}."SC_GROUPED_NAME" ;;
+  }
+
   #########################    measures  ###########################
 
   measure: sum_of_revenue {
