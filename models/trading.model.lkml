@@ -87,7 +87,7 @@ explore: tradingjobs {
   #   field: tradingjobs.managername
   #   user_attribute: team_manager_filter
   # }
-
+sql_always_where: ifnull(${servicecode},'exclude') != 'exclude' ;;
 }
 
 explore: vwtradingsuite {
