@@ -150,4 +150,5 @@ explore: vwtradingsuite_monthly {
 explore: commission_jobs {
   label: "New Business Commission Jobs"
   group_label: "DATAMART"
+  hidden: yes
 }
