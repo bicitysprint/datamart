@@ -146,3 +146,8 @@ explore: vwtradingsuite_monthly {
 
   #fields: [tradingjobs.explore_set*]
 }
+
+explore: commission_jobs {
+  label: "New Business Commission Jobs"
+  group_label: "DATAMART"
+}

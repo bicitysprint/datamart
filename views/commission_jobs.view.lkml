@@ -124,33 +124,41 @@ view: commission_jobs {
 ##  }
 
   dimension: booking_day {
+    hidden: yes
     type: number
     sql: ${TABLE}."BOOKING_DAY" ;;
   }
 
   dimension: booking_month {
+    hidden: yes
     type: number
     sql: ${TABLE}."BOOKING_MONTH" ;;
   }
 
   dimension: booking_week {
+    hidden: yes
     type: number
     sql: ${TABLE}."BOOKING_WEEK" ;;
   }
 
   dimension: booking_year {
+    hidden: yes
     type: number
     sql: ${TABLE}."BOOKING_YEAR" ;;
   }
 
   dimension_group: bookingdatetime {
+    label: "Booking"
     type: time
     timeframes: [
       raw,
       time,
       date,
       week,
+      week_of_year,
       month,
+      month_name,
+      month_num,
       quarter,
       year
     ]
@@ -277,6 +285,12 @@ view: commission_jobs {
     value_format_name: gbp
   }
 
+  dimension: customer_charge_split {
+    type: number
+    sql: ${TABLE}."REVENUE_SPLIT_AMOUNT" ;;
+    value_format_name: gbp
+  }
+
   dimension: department {
     type: string
     sql: ${TABLE}."DEPARTMENT" ;;
@@ -332,6 +346,7 @@ view: commission_jobs {
   dimension: jobno {
     type: number
     sql: ${TABLE}."JOBNO" ;;
+    value_format_name: id
   }
 
   dimension: linehaulcost {
@@ -405,12 +420,6 @@ view: commission_jobs {
   dimension: revenue {
     type: number
     sql: ${TABLE}."REVENUE" ;;
-    value_format_name: gbp
-  }
-
-  dimension: revenue_split_amount {
-    type: number
-    sql: ${TABLE}."REVENUE_SPLIT_AMOUNT" ;;
     value_format_name: gbp
   }
 
@@ -534,7 +543,7 @@ view: commission_jobs {
   measure: sum_of_revenue {
     description: "Revenue With Splits"
     type: sum
-    sql: ${revenue_split_amount} ;;
+    sql: ${customer_charge_split} ;;
     value_format_name: gbp
   }
 
