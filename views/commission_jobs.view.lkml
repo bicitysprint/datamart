@@ -77,6 +77,7 @@ view: commission_jobs {
   dimension: adj_comm_split_perc {
     type: number
     sql: ${TABLE}."ADJ_COMM_SPLIT_PERC" ;;
+    value_format_name: percent_2
   }
 
   dimension: agentcost {
@@ -209,6 +210,7 @@ view: commission_jobs {
   dimension: comm_split_perc {
     type: number
     sql: ${TABLE}."COMM_SPLIT_PERC" ;;
+    value_format_name: percent_2
   }
 
   dimension_group: comm_start {
@@ -415,6 +417,7 @@ view: commission_jobs {
   dimension: revenue_split_perc {
     type: number
     sql: ${TABLE}."REVENUE_SPLIT_PERC" ;;
+    value_format_name: percent_2
   }
 
   dimension: sales_division {
