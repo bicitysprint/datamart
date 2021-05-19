@@ -360,6 +360,11 @@ view: commission_jobs {
     sql: ${TABLE}."MANAGER_NAME" ;;
   }
 
+  dimension: manager_username {
+    type: string
+    sql: ${TABLE}."MANAGER_USERNAME" ;;
+  }
+
   dimension: margin {
     type: number
     sql: ${TABLE}."MARGIN" ;;

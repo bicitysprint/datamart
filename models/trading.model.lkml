@@ -151,4 +151,10 @@ explore: commission_jobs {
   label: "New Business Commission Jobs"
   group_label: "DATAMART"
   hidden: yes
+  access_filter: {
+    field: commission_jobs.user_name
+    user_attribute: bonus_name_filter
+  }
+
+
 }
