@@ -10,11 +10,13 @@ view: commission_jobs {
   dimension: accountcode {
     type: string
     sql: ${TABLE}."ACCOUNTCODE" ;;
+    drill_fields: [jobno]
   }
 
   dimension: accountname {
     type: string
     sql: ${TABLE}."ACCOUNTNAME" ;;
+    drill_fields: [jobno]
   }
 
   dimension_group: actual_closed {
@@ -163,6 +165,7 @@ view: commission_jobs {
       year
     ]
     sql: ${TABLE}."BOOKINGDATETIME" ;;
+    drill_fields: [jobno]
   }
 
   dimension: bookingtype {
@@ -513,6 +516,7 @@ view: commission_jobs {
   dimension: user_full_name {
     type: string
     sql: ${TABLE}."USER_FULL_NAME" ;;
+    drill_fields: [accountcode,accountname]
   }
 
   dimension: user_id {
@@ -535,6 +539,7 @@ view: commission_jobs {
   measure: sum_of_actual_commission {
     type: sum
     sql: ${adj_comm_amount} ;;
+    drill_fields: [bookingdatetime_year,bookingdatetime_month,user_full_name,accountcode,accountname,sum_of_customer_charge_with_split,sum_of_margin,sum_of_actual_commission]
     value_format_name: gbp
   }
 
@@ -545,14 +550,20 @@ view: commission_jobs {
     value_format_name: gbp
   }
 
-  measure: sum_of_revenue {
+  measure: sum_of_customer_charge_with_split {
     description: "Revenue With Splits"
     type: sum
     sql: ${customer_charge_split} ;;
     value_format_name: gbp
+    drill_fields: [bookingdatetime_year,bookingdatetime_month,user_full_name,accountcode,accountname,sum_of_customer_charge_with_split,sum_of_margin,sum_of_actual_commission]
   }
 
-
+  measure: sum_of_revenue {
+    description: "Margin With Splits"
+    type: sum
+    sql: ${revenue} ;;
+    value_format_name: gbp
+  }
 
 
 }
