@@ -25,6 +25,16 @@ datagroup: tradingsuite_monthly_default_datagroup {
   max_cache_age: "24 hour"
 }
 
+datagroup: commission_pay_default_datagroup {
+  sql_trigger: SELECT sum(profit) FROM datamart_stage.commission_pay_history_final ;;
+  max_cache_age: "24 hour"
+}
+
+datagroup: commission_jobs_default_datagroup {
+  sql_trigger: SELECT sum(customer_charge) FROM datamart_stage.commission_jobs ;;
+  max_cache_age: "24 hour"
+}
+
 
 explore: trading {
 
@@ -148,6 +158,7 @@ explore: vwtradingsuite_monthly {
 }
 
 explore: commission_jobs {
+  persist_with: commission_jobs_default_datagroup
   label: "New Business Commission Jobs"
   group_label: "DATAMART"
   hidden: yes
@@ -175,6 +186,7 @@ explore: commission_jobs {
       label: "Bonus And Commission History"
       group_label: "DATAMART"
       hidden: yes
+      persist_with: commission_pay_default_datagroup
       access_filter: {
         field: commission_users.user_name
          user_attribute: bonus_name_filter
@@ -190,6 +202,8 @@ explore: commission_jobs {
   }
 
   explore: monthly_adjustments_accounts {
+    hidden: yes
+    persist_with: tradingsuite_monthly_default_datagroup
     group_label: "DATAMART"
     view_name: vwtradingsuite_monthly
     view_label: "Monthly Adjustments Accounts"
