@@ -188,3 +188,22 @@ explore: commission_jobs {
     }
 
   }
+
+  explore: monthly_adjustments_accounts {
+    group_label: "DATAMART"
+    view_name: vwtradingsuite_monthly
+    view_label: "Monthly Adjustments Accounts"
+    #access_filter: {
+     # field: vwtradingsuite_monthly.user_name
+     # user_attribute: bonus_name_filter
+   # }
+
+    join: commission_pay_history_account {
+      type: left_outer
+      relationship: one_to_one
+      sql_on: ${vwtradingsuite_monthly.accountcode} = ${commission_pay_history_account.accountcode}
+              and ${vwtradingsuite_monthly.wcmonthdate_month} = ${commission_pay_history_account.bonus_date_month}  ;;
+    }
+
+
+  }
