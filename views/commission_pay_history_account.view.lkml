@@ -1,7 +1,6 @@
 view: commission_pay_history_account {
   sql_table_name: "DATAMART_STAGE"."COMMISSION_PAY_HISTORY_ACCOUNT"
     ;;
-  drill_fields: [id]
 
   dimension: id {
     primary_key: yes
@@ -104,7 +103,8 @@ view: commission_pay_history_account {
     sql: ${TABLE}."USERNAME" ;;
   }
 
-  dimension_group: wcmonthdate {
+  dimension_group: bonus_date {
+    group_label: "Bonus"
     type: time
     timeframes: [
       raw,
@@ -119,10 +119,35 @@ view: commission_pay_history_account {
     sql: ${TABLE}."WCMONTHDATE" ;;
   }
 
-  measure: count {
-    type: count
+  measure: sum_of_eligible_amount {
+    type: sum
+    sql: ${eligibleamount} ;;
     drill_fields: [detail*]
+    value_format_name: gbp
   }
+
+  measure: sum_of_profit {
+    type: sum
+    sql: ${profit} ;;
+    drill_fields: [detail*]
+    value_format_name: gbp
+  }
+
+  measure: sum_of_profit_forecast {
+    type: sum
+    sql: ${profitforecast} ;;
+    drill_fields: [detail*]
+    value_format_name: gbp
+  }
+
+  measure: performance {
+    type: number
+    sql: case when sum(${profitforecast}) = 0 then 0 else
+          sum(${profit}) / sum(${profitforecast}) end ;;
+    drill_fields: [detail*]
+    value_format_name: percent_2
+  }
+
 
   # ----- Sets of fields for drilling ------
   set: detail {

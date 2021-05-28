@@ -156,5 +156,35 @@ explore: commission_jobs {
     user_attribute: bonus_name_filter
   }
 
-
 }
+
+  explore: commission_pay_history_account {
+    label: "Bonus And Commission Account History"
+    group_label: "DATAMART"
+    hidden: yes
+    access_filter: {
+      field: commission_pay_history_account.username
+      user_attribute: bonus_name_filter
+    }
+
+
+
+  }
+
+    explore: commission_pay_history_final {
+      label: "Bonus And Commission History"
+      group_label: "DATAMART"
+      hidden: yes
+      access_filter: {
+        field: commission_users.user_name
+         user_attribute: bonus_name_filter
+      }
+
+    join: commission_users {
+      type: left_outer
+      relationship: many_to_one
+      sql_on: ${commission_pay_history_final.userid} = ${commission_users.user_id} ;;
+      fields: [commission_users.user_name,commission_users.department]
+    }
+
+  }
