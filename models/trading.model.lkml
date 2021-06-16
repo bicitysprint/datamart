@@ -202,7 +202,7 @@ explore: commission_jobs {
   }
 
   explore: monthly_adjustments_accounts {
-    hidden: yes
+    hidden: no
     persist_with: tradingsuite_monthly_default_datagroup
     group_label: "DATAMART"
     view_name: vwtradingsuite_monthly

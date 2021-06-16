@@ -148,10 +148,23 @@ view: vwtradingsuite {
     value_format_name: gbp
   }
 
+  dimension: finalprofit {
+    type: number
+    sql: ${TABLE}."FINALPROFIT" ;;
+    value_format_name: gbp
+  }
+
   dimension: margin {
     type: number
     sql: case when ${revenue} = 0 then 0 else
          ${profit} / ${revenue} end ;;
+    value_format_name: percent_2
+  }
+
+  dimension: finalmargin {
+    type: number
+    sql: case when ${finalrevenue} = 0 then 0 else
+     ${finalprofit} / ${finalrevenue} end ;;
     value_format_name: percent_2
   }
 
@@ -171,6 +184,12 @@ view: vwtradingsuite {
   dimension: profitforecastcomp {
     type: number
     sql: ${profit}-${profitforecast} ;;
+    value_format_name: gbp
+  }
+
+  dimension: finalprofitforecastcomp {
+    type: number
+    sql: ${finalprofit}-${profitforecast} ;;
     value_format_name: gbp
 
   }
@@ -194,6 +213,12 @@ view: vwtradingsuite {
     value_format_name: gbp
   }
 
+  dimension: finalrevenue {
+    type: number
+    sql: ${TABLE}."FINALREVENUE" ;;
+    value_format_name: gbp
+  }
+
   dimension: revenueforecast {
     type: number
     sql: ${TABLE}."REVENUEFORECAST" ;;
@@ -204,6 +229,12 @@ view: vwtradingsuite {
   dimension: revforecastcomp {
     type: number
     sql: ${revenue}-${revenueforecast} ;;
+    value_format_name: gbp
+  }
+
+  dimension: finalrevforecastcomp {
+    type: number
+    sql: ${finalrevenue}-${revenueforecast} ;;
     value_format_name: gbp
 
   }
@@ -343,6 +374,14 @@ view: vwtradingsuite {
 
   }
 
+  measure: sum_of_final_revenue {
+    type: sum
+    sql: ${finalrevenue} ;;
+    value_format_name: gbp
+    drill_fields: [final_revenue_detail*]
+
+  }
+
   measure: sum_of_revenue_forecast {
     type: sum
     sql: ${revenueforecast} ;;
@@ -359,11 +398,27 @@ view: vwtradingsuite {
 
   }
 
+  measure: sum_of_final_revenue_forecast_comparison {
+    type: sum
+    sql: ${finalrevforecastcomp} ;;
+    value_format_name: gbp
+    #drill_fields: [revenue_detail*]
+
+  }
+
   measure: sum_of_profit {
     type: sum
     sql: ${profit} ;;
     value_format_name: gbp
     drill_fields: [profit_detail*]
+
+  }
+
+  measure: sum_of_final_profit {
+    type: sum
+    sql: ${finalprofit} ;;
+    value_format_name: gbp
+    drill_fields: [final_profit_detail*]
 
   }
 
@@ -383,10 +438,25 @@ view: vwtradingsuite {
 
   }
 
+  measure: sum_of_final_profit_forecast_comparison {
+    type: sum
+    sql: ${finalprofitforecastcomp} ;;
+    value_format_name: gbp
+    #drill_fields: [revenue_detail*]
+
+  }
+
   measure: sum_of_margin {
     type: number
     sql: case when sum(${revenue}) = 0 then 0 else
          sum(${profit}) / sum(${revenue}) end    ;;
+    value_format_name: percent_2
+  }
+
+  measure: sum_of_final_margin {
+    type: number
+    sql: case when sum(${finalrevenue}) = 0 then 0 else
+      sum(${finalprofit}) / sum(${finalrevenue}) end    ;;
     value_format_name: percent_2
   }
 
@@ -405,14 +475,32 @@ set: revenue_detail {
   ]
 }
 
+  set: final_revenue_detail {
+    fields: [clientcode,clientname,wc_week,wc_week_of_year,sum_of_final_revenue,sum_of_revenue_forecast
+
+    ]
+  }
+
   set: profit_detail {
     fields: [clientcode,clientname,wc_week,wc_week_of_year,sum_of_profit,sum_of_profit_forecast
 
     ]
   }
 
+  set: final_profit_detail {
+    fields: [clientcode,clientname,wc_week,wc_week_of_year,sum_of_final_profit,sum_of_profit_forecast
+
+    ]
+  }
+
   set: margin_detail {
     fields: [clientcode,clientname,wc_week,wc_week_of_year,sum_of_revenue,sum_of_profit,sum_of_margin
+
+    ]
+  }
+
+  set: final_margin_detail {
+    fields: [clientcode,clientname,wc_week,wc_week_of_year,sum_of_final_revenue,sum_of_final_profit,sum_of_final_margin
 
     ]
   }
