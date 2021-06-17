@@ -364,6 +364,13 @@ view: vwtradingsuite {
     sql: ${TABLE}."SC_GROUPED_NAME" ;;
   }
 
+  dimension: top10_flag {
+    type: string
+    sql: iff(${dt_top10_clients.clientcode} is not null , 'y', 'n') ;;
+  }
+
+
+
   #########################    measures  ###########################
 
   measure: sum_of_revenue {

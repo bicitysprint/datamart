@@ -123,6 +123,13 @@ explore: vwtradingsuite {
   # }
   #fields: [tradingjobs.explore_set*]
 
+  join: dt_top10_clients {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${vwtradingsuite.clientcode} = ${dt_top10_clients.clientcode} and
+            ${vwtradingsuite.clientname} = ${dt_top10_clients.clientname}  ;;
+  }
+
 }
 
 explore: vwtradingsuite_monthly {
