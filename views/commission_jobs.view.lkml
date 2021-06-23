@@ -534,36 +534,77 @@ view: commission_jobs {
     sql: ${TABLE}."USER_STATUS" ;;
   }
 
-  ####################################    measues   #####################################
+  ####################################    measures   #####################################
 
   measure: sum_of_actual_commission {
     type: sum
     sql: ${adj_comm_amount} ;;
-    drill_fields: [bookingdatetime_year,bookingdatetime_month,user_full_name,accountcode,accountname,sum_of_customer_charge_with_split,sum_of_margin,sum_of_actual_commission]
+    drill_fields: [bookingdatetime_year,bookingdatetime_month,user_full_name,accountcode,accountname,sum_of_revenue_with_split,sum_of_profit_with_split,sum_of_actual_commission]
     value_format_name: gbp
   }
 
-  measure: sum_of_margin {
-    description: "Margin With Splits"
+  measure: sum_of_profit_with_split {
+    description: "Profit With Splits"
     type: sum
     sql: ${margin_split_amount} ;;
     value_format_name: gbp
   }
 
-  measure: sum_of_customer_charge_with_split {
+  measure: sum_of_revenue_with_split {
     description: "Revenue With Splits"
     type: sum
     sql: ${customer_charge_split} ;;
     value_format_name: gbp
-    drill_fields: [bookingdatetime_year,bookingdatetime_month,user_full_name,accountcode,accountname,sum_of_customer_charge_with_split,sum_of_margin,sum_of_actual_commission]
+    drill_fields: [bookingdatetime_year,bookingdatetime_month,user_full_name,accountcode,accountname,sum_of_revenue_with_split,sum_of_profit_with_split,sum_of_actual_commission]
   }
 
   measure: sum_of_revenue {
-    description: "Margin With Splits"
+    description: "Revenue Without Splits"
     type: sum
     sql: ${revenue} ;;
     value_format_name: gbp
   }
 
+  measure: sum_of_costs {
+    description: "Total Costs Without Splits"
+    type: sum
+    sql: ${cost} ;;
+    value_format_name: gbp
+  }
+
+  measure: sum_of_driver_costs {
+    description: "Driver Costs Without Splits"
+    type: sum
+    sql: ${drivercost} ;;
+    value_format_name: gbp
+  }
+
+  measure: sum_of_agent_costs {
+    description: "Agent Costs Without Splits"
+    type: sum
+    sql: ${agentcost} ;;
+    value_format_name: gbp
+  }
+
+  measure: sum_of_trunk_costs {
+    description: "Trunk Costs Without Splits"
+    type: sum
+    sql: ${trunkcost} ;;
+    value_format_name: gbp
+  }
+
+  measure: sum_of_linehaul_costs {
+    description: "Linehaul Costs Without Splits"
+    type: sum
+    sql: ${linehaulcost} ;;
+    value_format_name: gbp
+  }
+
+  measure: sum_of_ndj_costs {
+    description: "NDJ Costs Without Splits"
+    type: sum
+    sql: ${nondistributedjobcost} ;;
+    value_format_name: gbp
+  }
 
 }

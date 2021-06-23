@@ -209,15 +209,15 @@ explore: commission_jobs {
   }
 
   explore: monthly_adjustments_accounts {
-    hidden: yes
+    hidden: no
     persist_with: tradingsuite_monthly_default_datagroup
     group_label: "DATAMART"
     view_name: vwtradingsuite_monthly
     view_label: "Monthly Adjustments Accounts"
-    #access_filter: {
-     # field: vwtradingsuite_monthly.user_name
-     # user_attribute: bonus_name_filter
-   # }
+    access_filter: {
+      field: vwtradingsuite_monthly.user_name
+      user_attribute: bonus_name_filter
+    }
 
     join: commission_pay_history_account {
       type: left_outer
@@ -228,3 +228,25 @@ explore: commission_jobs {
 
 
   }
+
+explore: monthly_adjustments_new_business {
+  hidden: no
+  persist_with: commission_jobs_default_datagroup
+  group_label: "DATAMART"
+  view_name: commission_jobs
+  view_label: "Monthly Adjustments New Business"
+  access_filter: {
+    field: commission_jobs.user_name
+    user_attribute: bonus_name_filter
+  }
+
+  join: commission_pay_history_account {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${commission_jobs.accountcode} = ${commission_pay_history_account.accountcode}
+            and ${commission_jobs.user_full_name} = ${commission_pay_history_account.fullname}
+            and ${commission_jobs.bookingdatetime_month} = ${commission_pay_history_account.bonus_date_month}  ;;
+  }
+
+
+}
