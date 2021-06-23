@@ -209,7 +209,7 @@ explore: commission_jobs {
   }
 
   explore: monthly_adjustments_accounts {
-    hidden: no
+    hidden: yes
     persist_with: tradingsuite_monthly_default_datagroup
     group_label: "DATAMART"
     view_name: vwtradingsuite_monthly
@@ -230,7 +230,7 @@ explore: commission_jobs {
   }
 
 explore: monthly_adjustments_new_business {
-  hidden: no
+  hidden: yes
   persist_with: commission_jobs_default_datagroup
   group_label: "DATAMART"
   view_name: commission_jobs
