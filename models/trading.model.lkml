@@ -174,6 +174,11 @@ explore: commission_jobs {
     user_attribute: bonus_name_filter
   }
 
+  access_filter: {
+    field: commission_jobs.department
+    user_attribute: bonus_department_filter
+  }
+
 }
 
   explore: commission_pay_history_account {
@@ -183,6 +188,11 @@ explore: commission_jobs {
     access_filter: {
       field: commission_pay_history_account.username
       user_attribute: bonus_name_filter
+    }
+
+    access_filter: {
+      field: commission_pay_history_account.department
+      user_attribute: bonus_department_filter
     }
 
 
@@ -197,6 +207,11 @@ explore: commission_jobs {
       access_filter: {
         field: commission_users.user_name
          user_attribute: bonus_name_filter
+      }
+
+      access_filter: {
+        field: commission_users.department
+        user_attribute: bonus_department_filter
       }
 
     join: commission_users {
@@ -219,6 +234,11 @@ explore: commission_jobs {
       user_attribute: bonus_name_filter
     }
 
+    access_filter: {
+      field: vwtradingsuite_monthly.department
+      user_attribute: bonus_department_filter
+    }
+
     join: commission_pay_history_account {
       type: left_outer
       relationship: one_to_one
@@ -238,6 +258,11 @@ explore: monthly_adjustments_new_business {
   access_filter: {
     field: commission_jobs.user_name
     user_attribute: bonus_name_filter
+  }
+
+  access_filter: {
+    field: commission_jobs.department
+    user_attribute: bonus_department_filter
   }
 
   join: commission_pay_history_account {
