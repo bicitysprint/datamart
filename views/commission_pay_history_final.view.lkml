@@ -10,7 +10,7 @@ view: commission_pay_history_final {
 
   dimension: amountearnedadjusted {
     type: number
-    sql: iff((TO_CHAR(DATE_TRUNC('month', ${TABLE}."MONTHDATE" ), 'YYYY-MM')) <= '2021-05',${TABLE}."AMOUNTEARNED",${TABLE}."AMOUNTEARNEDADJUSTED") ;;
+    sql: iff((TO_CHAR(DATE_TRUNC('month', ${TABLE}."MONTHDATE" ), 'YYYY-MM')) < '2021-04',${TABLE}."AMOUNTEARNED",${TABLE}."AMOUNTEARNEDADJUSTED") ;;
     value_format_name: gbp
   }
 
@@ -31,7 +31,7 @@ view: commission_pay_history_final {
 
   dimension: difference {
     type: number
-    sql: iff((TO_CHAR(DATE_TRUNC('month', ${TABLE}."MONTHDATE" ), 'YYYY-MM')) <= '2021-05',0,${TABLE}."DIFFERENCE") ;;
+    sql: iff((TO_CHAR(DATE_TRUNC('month', ${TABLE}."MONTHDATE" ), 'YYYY-MM')) < '2021-04',0,${TABLE}."DIFFERENCE") ;;
     value_format_name: gbp
   }
 
@@ -103,7 +103,7 @@ view: commission_pay_history_final {
 
   dimension: rerun_amountearned {
     type:number
-    sql: iff((TO_CHAR(DATE_TRUNC('month', ${TABLE}."MONTHDATE" ), 'YYYY-MM')) <= '2021-05',0, ${TABLE}."RERUN_AMOUNTEARNED") ;;
+    sql: iff((TO_CHAR(DATE_TRUNC('month', ${TABLE}."MONTHDATE" ), 'YYYY-MM')) <= '2021-04',0, ${TABLE}."RERUN_AMOUNTEARNED") ;;
     value_format_name: gbp
   }
 
